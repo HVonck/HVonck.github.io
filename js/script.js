@@ -1,4 +1,7 @@
 var channelId = 'UC8C7ncaMYnXyu-pRU0S9FLg';
+var videoWidth = 500;
+var videoHeight = 400;
+var maxVideoResults = 10;
 
 $(document).ready(function(){
   $.get(
@@ -19,7 +22,7 @@ $(document).ready(function(){
     $.get(
       "https://www.googleapis.com/youtube/v3/playlistItems", {
         part: 'snippet',
-        maxResults: 10,
+        maxResults: maxVideoResults,
         playlistId: pId,
         key: 'AIzaSyBj4NR2ccKANrB7X85GvG5pcfUyKlWyMus' },
         function(data){
@@ -27,9 +30,9 @@ $(document).ready(function(){
           $.each(data.items, function(i, item){
             console.log(item);
             videoTitle = item.snippet.title;
-            videoId = item.snippet.videoId;
+            videoId = item.snippet.resourceId.videoId;
 
-            output = '<li><iframe src=\"//www.youtube.com/embed/' + videoId + '\"></iframe></li>';
+            output = '<li><iframe width="' + videoWidth + '" height="' + videoHeight + '" src=\"//www.youtube.com/embed/' + videoId + '\"></iframe></li>';
 
             $('#results').append(output);
           })
