@@ -3,6 +3,13 @@
   <head>
     <title>Channel videos</title>
     <style>
+      pre {
+        white-space: pre-wrap;       /* Since CSS 2.1 */
+        white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+        white-space: -pre-wrap;      /* Opera 4-6 */
+        white-space: -o-pre-wrap;    /* Opera 7 */
+        word-wrap: break-word;       /* Internet Explorer 5.5+ */
+      }
       body {
         background:#f4f4f4;
         font-family:"Arial"", sans-serif;
@@ -22,7 +29,7 @@
   <body>
     <div id="container">
       <h1>Youtube Videos</h1>
-      <ul id="results"></ul>
+      <div id="results"></div>
     </div>
   </body>
 </html>

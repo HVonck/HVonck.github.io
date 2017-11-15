@@ -1,7 +1,13 @@
 var channelId = 'UC8C7ncaMYnXyu-pRU0S9FLg';
-var videoWidth = 500;
-var videoHeight = 400;
-var maxVideoResults = 10;
+var videoWidth = '100%';
+var videoHeight = 'auto';
+var maxVideoResults = 5;
+
+var colors = [
+  "red",
+  "green",
+  "blue"
+];
 
 $(document).ready(function(){
   $.get(
@@ -26,20 +32,24 @@ $(document).ready(function(){
         playlistId: pId,
         key: 'AIzaSyBj4NR2ccKANrB7X85GvG5pcfUyKlWyMus' },
         function(data){
-          var output;
+          var output = '';
           $.each(data.items, function(i, item){
             console.log(item);
             videoTitle = item.snippet.title;
             videoId = item.snippet.resourceId.videoId;
             videoDescription = item.snippet.description;
 
-            output  = '<li>';
+            output += '<div width="50%" style="background-color: ' + colors[i % colors.length] + '">';
+            output += '<h1>';
+            output += videoTitle;
+            output += '</h1>';
             output += '<iframe width="' + videoWidth + '" height="' + videoHeight + '" src=\"//www.youtube.com/embed/' + videoId + '\">';
             output += '</iframe>';
             output += '<pre>';
+            output += '<b>Description:</b>\n';
             output += videoDescription;
             output += '</pre>';
-            output += '</li>';
+            output += '</div>';
 
             $('#results').append(output);
           })
