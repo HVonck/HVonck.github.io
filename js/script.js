@@ -27,8 +27,9 @@ $(document).ready(function(){
           $.each(data.items, function(i, item){
             console.log(item);
             videoTitle = item.snippet.title;
+            videoId = item.snippet.videoId;
 
-            output = '<li>' + videoTitle + '</li>';
+            output = '<li><iframe src=\"//www.youtube.com/embed/' + videoId + '\"></iframe></li>';
 
             $('#results').append(output);
           })
