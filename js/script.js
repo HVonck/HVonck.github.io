@@ -39,17 +39,19 @@ $(document).ready(function(){
             videoDescription = item.snippet.description;
 
             var output = '';
-            output += '<li width="50%" style="background-color: ' + colors[i % colors.length] + '">';
+            output += '<div width="50%" style="background-color: ' + colors[i % colors.length] + '">';
             output += '<h1>';
             output += videoTitle;
             output += '</h1>';
+            output += '<div class="video-container">'
             output += '<iframe width="' + videoWidth + '" height="' + videoHeight + '" src=\"//www.youtube.com/embed/' + videoId + '\">';
             output += '</iframe>';
+            output += '</div>';
             output += '<pre>';
             output += '<b>Description:</b>\n';
             output += videoDescription;
             output += '</pre>';
-            output += '</li>';
+            output += '</div>';
 
             $('#results').append(output);
           })
