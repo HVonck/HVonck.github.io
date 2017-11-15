@@ -1,123 +1,210 @@
 <!--
-  Copyright (c) 2011 Google Inc.
 
-  Licensed under the Apache License, Version 2.0 (the "License"); you may not
-  use this file except in compliance with the License. You may obtain a copy of
-  the License at
+/*
+ *
+ * Copyright 2015 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-  http://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-  License for the specific language governing permissions and limitations under
-  the License.
-
-  To run this sample, set apiKey to your application's API key and clientId to
-  your application's OAuth 2.0 client ID. They can be generated at:
-    https://console.developers.google.com/apis/credentials?project=_
-  Then, add a JavaScript origin to the client that corresponds to the domain
-  where you will be running the script. Finally, activate the People API at:
-    https://console.developers.google.com/apis/library?project=_
 -->
+
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="google-site-verification" content="bMtiHtu2OY-OKtPzeNlG1MirgoFo-M4f2rwSxRww6U0" />
-    <title>Say hello using the People API</title>
-    <meta charset='utf-8' />
-  </head>
-  <body>
-    <p>Say hello using the People API.</p>
+<head>
+  <meta name="google-site-verification" content="bMtiHtu2OY-OKtPzeNlG1MirgoFo-M4f2rwSxRww6U0" />
+  <title>Google+ JavaScript Quickstart</title>
+  <!-- JavaScript specific to this application that is not related to API
+     calls -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" ></script>
+  <meta name="google-signin-client_id" content="51433816042-thuqem73bajvmmtmmfq20guma1f8qa2v.apps.googleusercontent.com"></meta>
+</head>
+<body>
+  <div id="gConnect">
+    <div id="signin-button"></div>
+  </div>
+  <div id="authOps" style="display:none">
+    <h2>User is now signed in to the app using Google+</h2>
+    <button id="signOut" onclick="auth2.signOut()">Sign Out</button>
+    <p>If the user chooses to disconnect, the app must delete all stored
+    information retrieved from Google for the given user.</p>
+    <button id="disconnect" >Disconnect your Google account from this app</button>
 
-    <!--Add buttons to initiate auth sequence and sign out-->
-    <button id="authorize-button" style="display: none;">Authorize</button>
-    <button id="signout-button" style="display: none;">Sign Out</button>
+    <h2>User's profile information</h2>
+    <div id="profile"></div>
 
-    <div id="content"></div>
+    <h2>User's friends that are visible to this app</h2>
+    <div id="visiblePeople"></div>
 
-    <script type="text/javascript">
-      // Enter an API key from the Google API Console:
-      //   https://console.developers.google.com/apis/credentials
-      var apiKey = 'AIzaSyBj4NR2ccKANrB7X85GvG5pcfUyKlWyMus';
-
-      // Enter the API Discovery Docs that describes the APIs you want to
-      // access. In this example, we are accessing the People API, so we load
-      // Discovery Doc found here: https://developers.google.com/people/api/rest/
-      var discoveryDocs = ["https://people.googleapis.com/$discovery/rest?version=v1"];
-
-      // Enter a client ID for a web application from the Google API Console:
-      //   https://console.developers.google.com/apis/credentials?project=_
-      // In your API Console project, add a JavaScript origin that corresponds
-      //   to the domain where you will be running the script.
-      var clientId = '51433816042-thuqem73bajvmmtmmfq20guma1f8qa2v.apps.googleusercontent.com';
-
-      // Enter one or more authorization scopes. Refer to the documentation for
-      // the API or https://developers.google.com/people/v1/how-tos/authorizing
-      // for details.
-      var scopes = 'profile';
-
-      var authorizeButton = document.getElementById('authorize-button');
-      var signoutButton = document.getElementById('signout-button');
-
-      function handleClientLoad() {
-        // Load the API client and auth2 library
-        gapi.load('client:auth2', initClient);
+    <h2>Authentication Logs</h2>
+    <pre id="authResult"></pre>
+  </div>
+  <div id="loaderror">
+    This section will be hidden by jQuery. If you can see this message, you
+    may be viewing the file rather than running a web server.<br />
+    The sample must be run from http or https. See instructions at
+    <a href="https://developers.google.com/+/quickstart/javascript">
+    https://developers.google.com/+/quickstart/javascript</a>.
+  </div>
+<script type="text/javascript">
+var auth2 = {};
+var helper = (function() {
+  return {
+    /**
+     * Hides the sign in button and starts the post-authorization operations.
+     *
+     * @param {Object} authResult An Object which contains the access token and
+     *   other authentication information.
+     */
+    onSignInCallback: function(authResult) {
+      $('#authResult').html('Auth Result:<br/>');
+      for (var field in authResult) {
+        $('#authResult').append(' ' + field + ': ' +
+            authResult[field] + '<br/>');
+      }
+      if (authResult.isSignedIn.get()) {
+        $('#authOps').show('slow');
+        $('#gConnect').hide();
+        helper.profile();
+        helper.people();
+      } else {
+          if (authResult['error'] || authResult.currentUser.get().getAuthResponse() == null) {
+            // There was an error, which means the user is not signed in.
+            // As an example, you can handle by writing to the console:
+            console.log('There was an error: ' + authResult['error']);
+          }
+          $('#authResult').append('Logged out');
+          $('#authOps').hide('slow');
+          $('#gConnect').show();
       }
 
-      function initClient() {
-        gapi.client.init({
-            apiKey: apiKey,
-            discoveryDocs: discoveryDocs,
-            clientId: clientId,
-            scope: scopes
-        }).then(function () {
-          // Listen for sign-in state changes.
-          gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+      console.log('authResult', authResult);
+    },
 
-          // Handle the initial sign-in state.
-          updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+    /**
+     * Calls the OAuth2 endpoint to disconnect the app for the user.
+     */
+    disconnect: function() {
+      // Revoke the access token.
+      auth2.disconnect();
+    },
 
-          authorizeButton.onclick = handleAuthClick;
-          signoutButton.onclick = handleSignoutClick;
-        });
-      }
-
-      function updateSigninStatus(isSignedIn) {
-        if (isSignedIn) {
-          authorizeButton.style.display = 'none';
-          signoutButton.style.display = 'block';
-          makeApiCall();
-        } else {
-          authorizeButton.style.display = 'block';
-          signoutButton.style.display = 'none';
+    /**
+     * Gets and renders the list of people visible to this app.
+     */
+    people: function() {
+      gapi.client.plus.people.list({
+        'userId': 'me',
+        'collection': 'visible'
+      }).then(function(res) {
+        var people = res.result;
+        $('#visiblePeople').empty();
+        $('#visiblePeople').append('Number of people visible to this app: ' +
+            people.totalItems + '<br/>');
+        for (var personIndex in people.items) {
+          person = people.items[personIndex];
+          $('#visiblePeople').append('<img src="' + person.image.url + '">');
         }
-      }
+      });
+    },
 
-      function handleAuthClick(event) {
-        gapi.auth2.getAuthInstance().signIn();
-      }
+    /**
+     * Gets and renders the currently signed in user's profile data.
+     */
+    profile: function(){
+      gapi.client.plus.people.get({
+        'userId': 'me'
+      }).then(function(res) {
+        var profile = res.result;
+        console.log(profile);
+        $('#profile').empty();
+        $('#profile').append(
+            $('<p><img src=\"' + profile.image.url + '\"></p>'));
+        $('#profile').append(
+            $('<p>Hello ' + profile.displayName + '!<br />Tagline: ' +
+            profile.tagline + '<br />About: ' + profile.aboutMe + '</p>'));
+        if (profile.emails) {
+          $('#profile').append('<br/>Emails: ');
+          for (var i=0; i < profile.emails.length; i++){
+            $('#profile').append(profile.emails[i].value).append(' ');
+          }
+          $('#profile').append('<br/>');
+        }
+        if (profile.cover && profile.coverPhoto) {
+          $('#profile').append(
+              $('<p><img src=\"' + profile.cover.coverPhoto.url + '\"></p>'));
+        }
+      }, function(err) {
+        var error = err.result;
+        $('#profile').empty();
+        $('#profile').append(error.message);
+      });
+    }
+  };
+})();
 
-      function handleSignoutClick(event) {
-        gapi.auth2.getAuthInstance().signOut();
-      }
+/**
+ * jQuery initialization
+ */
+$(document).ready(function() {
+  $('#disconnect').click(helper.disconnect);
+  $('#loaderror').hide();
+  if ($('meta')[0].content == 'YOUR_CLIENT_ID') {
+    alert('This sample requires your OAuth credentials (client ID) ' +
+        'from the Google APIs console:\n' +
+        '    https://code.google.com/apis/console/#:access\n\n' +
+        'Find and replace YOUR_CLIENT_ID with your client ID.'
+    );
+  }
+});
 
-      // Load the API and make an API call.  Display the results on the screen.
-      function makeApiCall() {
-        gapi.client.people.people.get({
-          'resourceName': 'people/me',
-          'requestMask.includeField': 'person.names'
-        }).then(function(resp) {
-          var p = document.createElement('p');
-          var name = resp.result.names[0].givenName;
-          p.appendChild(document.createTextNode('Hello, '+name+'!'));
-          document.getElementById('content').appendChild(p);
-        });
-      }
-    </script>
-    <script async defer src="https://apis.google.com/js/api.js" 
-      onload="this.onload=function(){};handleClientLoad()" 
-      onreadystatechange="if (this.readyState === 'complete') this.onload()">
-    </script>
-  </body>
+/**
+ * Handler for when the sign-in state changes.
+ *
+ * @param {boolean} isSignedIn The new signed in state.
+ */
+var updateSignIn = function() {
+  console.log('update sign in state');
+  if (auth2.isSignedIn.get()) {
+    console.log('signed in');
+    helper.onSignInCallback(gapi.auth2.getAuthInstance());
+  }else{
+    console.log('signed out');
+    helper.onSignInCallback(gapi.auth2.getAuthInstance());
+  }
+}
+
+/**
+ * This method sets up the sign-in listener after the client library loads.
+ */
+function startApp() {
+  gapi.load('auth2', function() {
+    gapi.client.load('plus','v1').then(function() {
+      gapi.signin2.render('signin-button', {
+          scope: 'https://www.googleapis.com/auth/plus.login',
+          fetch_basic_profile: false });
+      gapi.auth2.init({fetch_basic_profile: false,
+          scope:'https://www.googleapis.com/auth/plus.login'}).then(
+            function (){
+              console.log('init');
+              auth2 = gapi.auth2.getAuthInstance();
+              auth2.isSignedIn.listen(updateSignIn);
+              auth2.then(updateSignIn);
+            });
+    });
+  });
+}
+</script>
+<script src="https://apis.google.com/js/client:platform.js?onload=startApp"></script>
+</body>
 </html>
