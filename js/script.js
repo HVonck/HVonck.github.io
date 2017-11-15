@@ -43,7 +43,7 @@ $(document).ready(function(){
             output += '<h1>';
             output += videoTitle;
             output += '</h1>';
-            output += '<div class="video-container">'
+            output += '<div class="video-container">';
             output += '<iframe width="' + videoWidth + '" height="' + videoHeight + '" src=\"//www.youtube.com/embed/' + videoId + '\">';
             output += '</iframe>';
             output += '</div>';
