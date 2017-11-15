@@ -39,7 +39,7 @@ $(document).ready(function(){
             videoId = item.snippet.resourceId.videoId;
             videoDescription = item.snippet.description;
 
-            output += '<div width="50%" style="background-color: ' + colors[i % colors.length] + '">';
+            output += '<li width="50%" style="background-color: ' + colors[i % colors.length] + '">';
             output += '<h1>';
             output += videoTitle;
             output += '</h1>';
@@ -49,7 +49,7 @@ $(document).ready(function(){
             output += '<b>Description:</b>\n';
             output += videoDescription;
             output += '</pre>';
-            output += '</div>';
+            output += '</li>';
 
             $('#results').append(output);
           })
