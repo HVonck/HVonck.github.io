@@ -1,7 +1,7 @@
 var channelId = 'UC8C7ncaMYnXyu-pRU0S9FLg';
 var videoWidth = '100%';
 var videoHeight = 'auto';
-var maxVideoResults = 5;
+var maxVideoResults = 10;
 
 var colors = [
   "red",
@@ -32,13 +32,13 @@ $(document).ready(function(){
         playlistId: pId,
         key: 'AIzaSyBj4NR2ccKANrB7X85GvG5pcfUyKlWyMus' },
         function(data){
-          var output = '';
           $.each(data.items, function(i, item){
             console.log(item);
             videoTitle = item.snippet.title;
             videoId = item.snippet.resourceId.videoId;
             videoDescription = item.snippet.description;
 
+            var output = '';
             output += '<li width="50%" style="background-color: ' + colors[i % colors.length] + '">';
             output += '<h1>';
             output += videoTitle;
