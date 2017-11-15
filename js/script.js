@@ -31,8 +31,15 @@ $(document).ready(function(){
             console.log(item);
             videoTitle = item.snippet.title;
             videoId = item.snippet.resourceId.videoId;
+            videoDescription = item.snippet.description;
 
-            output = '<li><iframe width="' + videoWidth + '" height="' + videoHeight + '" src=\"//www.youtube.com/embed/' + videoId + '\"></iframe></li>';
+            output  = '<li>';
+            output += '<iframe width="' + videoWidth + '" height="' + videoHeight + '" src=\"//www.youtube.com/embed/' + videoId + '\">';
+            output += '</iframe>';
+            output += '<p>';
+            output += videoDescription;
+            output += '</p>';
+            output += '</li>';
 
             $('#results').append(output);
           })
