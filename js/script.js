@@ -1,4 +1,4 @@
-var channelName = 'Hilze Vonck'
+var channelName = 'Hilze Vonck';
 
 $(document).ready(function(){
   $.get(
