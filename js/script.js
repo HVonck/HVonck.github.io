@@ -36,9 +36,9 @@ $(document).ready(function(){
             output  = '<li>';
             output += '<iframe width="' + videoWidth + '" height="' + videoHeight + '" src=\"//www.youtube.com/embed/' + videoId + '\">';
             output += '</iframe>';
-            output += '<p>';
+            output += '<pre>';
             output += videoDescription;
-            output += '</p>';
+            output += '</pre>';
             output += '</li>';
 
             $('#results').append(output);
