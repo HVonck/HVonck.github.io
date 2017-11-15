@@ -23,6 +23,7 @@
 
         // Load the Markdown file and convert it to HTML for display
         var markdownURL = "mycontent.markdown";
+        $("#status").html("<p>" + mardownURL + "...</p>");
         $.get(markdownURL, function(markdownContent) {
             var converter = new Markdown.Converter();
             var htmlContent = converter.makeHtml(markdownContent);
