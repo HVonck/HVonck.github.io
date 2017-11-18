@@ -28,39 +28,81 @@
 		font-family: "avenir";
 	}
 body {margin:0;}
-	
+
 	.navbar {
 	    padding: 0;
 	    overflow: hidden;
-	    width: 100%;
 	    background-color: #f1c40e;
-		font-family: "avenir";
-		font-size: 1.0em;
+	    width: 100%;
+		font-family: Arial;
+		z-index:10;
 	}
 
-	.navbar a {
+	.navbar-icon {
 		float: left;
 	    color: #2c2c2c;
 	    text-align: center;
-	    padding: 1em 1em;
+	    padding: 14px 16px;
+	    text-decoration: none;
+		font-size: 16px;
+	}
+
+	.dropdown {
+		float: left;
+		display: inline-block;
+	}
+	
+	.dropbtn {
+	    display: inline-block;
+	    color: #2c2c2c;
+	    text-align: center;
+	    padding: 14px 16px;
 	    text-decoration: none;
 	}
 
-	.navbar a:hover {
+	.navbar a:hover, .dropdown:hover .dropbtn {
+	    background-color: #d9b00d;
+	}
+
+	.dropdown-content {
+		visibility: hidden;
+	    opacity: 0;
+	    transition-property: opacity, visibility;
+	    transition-duration: .1s, 0s;
+	    transition-delay: 0s, .4s;
+
+		display: block;
+		position: fixed;
+	    background-color: #f1c40e;
+		min-width: 160px;
+		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		z-index: 1;
+	}
+
+	.dropdown-content a {
+		transition: opacity .25s ease-in-out;
+		display: block;
+		alpha: 1.0;
+	    color: #2c2c2c;
+		text-align: left;
+		padding: 12px 16px;
+		text-decoration: none;
+	}
+
+	.dropdown-content a:hover {
 	    background-color: #d9b00d;
 	}
 
 	.active {
 	    background-color: #c19c0b;
 	}
-
+	
 	.navbar.fixed-navbar {
 	    position:fixed;
 	    top:0;
 	    left:0;
 	    right:0;
 	    margin:0;
-		z-index:100;
 	}
 	.navbar.responsive.fixed-navbar {
 	    position:fixed;
@@ -70,33 +112,42 @@ body {margin:0;}
 	    margin:0;
 	}
 
+	.dropdown:hover .dropdown-content {
+		visibility: visible;
+		opacity: 1.0;
+		transition-delay: 0s, 0s;
+		transition-duration: .25s, 0s;
+	}
+
 	.navbar .navbar-icon {
 		display: none;
 	}
 
 	@media screen and (max-width: 600px) {
-	  .navbar a:not(:first-child) {display: none;}
+	  .navbar div:not(:first-child) { display: none; }
 	  .navbar a.navbar-icon {
 		float: right;
 		display: block;
-		height: 3.25em;
+		height: 45px;
 		width: auto;
 	  }
 	}
 
 	/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
 	@media screen and (max-width: 600px) {
-	  .navbar.responsive {position: relative;}
-	  .navbar.responsive a.navbar-icon {
-		position: absolute;
-		right: 0;
-		top: 0;
-	  }
-	  .navbar.responsive a {
-		float: none;
-		display: block;
-		text-align: left;
-	  }
+		.navbar.responsive {
+			position: fixed;
+		}
+		.navbar.responsive a.navbar-icon {
+			position: absolute;
+			right: 0;
+			top: 0;
+		}
+		.navbar.responsive div {
+			float: none;
+			display: block;
+			text-align: left;
+		}
 	}
 .code-resize-animation {
 		transition: all .5s linear;
@@ -314,10 +365,16 @@ body {margin:0;}
 		</div>
 			<div class="column middle"><div style="height:0px" id="navbar-filler"></div>
 <div class="navbar" id="topnav">
-<a id="menu_btn_0_0" class="menu_btn active" onclick="onChangePage('0_0')">Introduction</a>
-<a id="menu_btn_1_0" class="menu_btn " onclick="onChangePage('1_0')">Elements</a>
-<a id="menu_btn_2_0" class="menu_btn " onclick="onChangePage('2_0')">Contact</a>
-<a href="javascript:void(0);" class="navbar-icon" onclick="resizeNavbar()">&#9776;</a></div>
+<div class="dropdown">
+<a id="menu_btn_0_0" class="menu_btn dropbtn active" onclick="onChangePage('0_0')">Introduction</a>
+<div class="dropdown-content"><a onclick="onChangePage('0_1')"> Lorem ipsum.</a><a onclick="onChangePage('0_2')"> Bacon ipsum.</a></div></div>
+<div class="dropdown">
+<a id="menu_btn_1_0" class="menu_btn dropbtn" onclick="onChangePage('1_0')">Elements</a>
+<div class="dropdown-content"><a onclick="onChangePage('1_1')"> Examples.</a><a onclick="onChangePage('1_2')"> Examples.</a></div></div>
+<div class="dropdown">
+<a id="menu_btn_2_0" class="menu_btn dropbtn" onclick="onChangePage('2_0')">Contact</a>
+<div class="dropdown-content"><a onclick="onChangePage('2_1')">contact</a></div></div>
+<a href="javascript:void(0);" style="font-size:15px; " class="navbar-icon" onclick="resizeNavbar()">&#9776;</a></div>
 
 			</div>
 		<div class="column side">
@@ -337,11 +394,11 @@ body {margin:0;}
 	<div class="row">
 		<div class="column side">
 		</div>
-			<div class="column middle"><div id="subpage_0_0" style="width:100%; display:inline-block; background-color:#333333"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Lorem ipsum.</pre>
+			<div class="column middle"><div id="subpage_0_1" style="width:100%; display:inline-block; background-color:#434343"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Lorem ipsum.</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
-</div><div id="subpage_0_1" style="width:100%; display:inline-block; background-color:#434343"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Bacon ipsum.</pre>
+</div><div id="subpage_0_2" style="width:100%; display:inline-block; background-color:#333333"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Bacon ipsum.</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">Bacon ipsum dolor amet ball tip doner kielbasa short loin strip steak buffalo biltong beef ribs. Pastrami sausage short ribs, shank swine pork loin doner cow capicola drumstick rump. Turkey leberkas ribeye, cupim pancetta cow tenderloin beef. Flank ball tip landjaeger shankle kielbasa pork cow strip steak salami. Tenderloin turducken ham hock tri-tip, tail bresaola buffalo brisket. Strip steak turducken flank cupim cow, biltong kevin shankle bacon tenderloin ham hock jerky.</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">Pancetta cow shoulder pork belly. Burgdoggen kielbasa alcatra kevin jowl turducken. Pancetta sirloin meatball shoulder brisket pork loin meatloaf andouille kielbasa beef doner jowl burgdoggen pork chop. Short ribs salami kielbasa pork andouille meatball bresaola ham beef short loin pork loin. Short loin doner sausage burgdoggen ham porchetta, rump kevin kielbasa spare ribs. Beef fatback pork belly kielbasa pig burgdoggen andouille turkey ham hock t-bone picanha.</pre>
@@ -362,7 +419,7 @@ body {margin:0;}
 	<div class="row">
 		<div class="column side">
 		</div>
-			<div class="column middle"><div id="subpage_1_0" style="width:100%; display:inline-block; background-color:#333333"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Examples.</pre>
+			<div class="column middle"><div id="subpage_1_1" style="width:100%; display:inline-block; background-color:#434343"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Examples.</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">This here is an example of the ::code() function:</pre>
 <pre style="position:relative; left:5%; width: 90%" id="code-0"><code style="padding: 0em; height: auto; max-height:10em" class="code-resize-animation c++">#pragma once
 #include < fstream >
@@ -412,7 +469,7 @@ class ResponsiveDropdownMenu : public Menu
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
 <div style="position:relative; left:5.000000%; width:90.000000%""><div class="ba-slider"><img src="images/all_enabled.png" alt="Left">	<div class="resize">		<img src="images/all_disabled.png" alt="Right">	</div>	<span class="handle"></span></div><pre style="left:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">Left</pre><pre style="right:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">Right</pre></div>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
-</div><div id="subpage_1_1" style="width:100%; display:inline-block; background-color:#434343"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Examples.</pre>
+</div><div id="subpage_1_2" style="width:100%; display:inline-block; background-color:#333333"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Examples.</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">This here is an example of the ::code() function:</pre>
 </div>
 			</div>
@@ -424,7 +481,7 @@ class ResponsiveDropdownMenu : public Menu
 	<div class="row">
 		<div class="column side">
 		</div>
-			<div class="column middle"><div id="subpage_2_0" style="width:100%; display:inline-block; background-color:#333333"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 1.5em; color: #f5d34b">contact</pre>
+			<div class="column middle"><div id="subpage_2_1" style="width:100%; display:inline-block; background-color:#434343"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 1.5em; color: #f5d34b">contact</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">YouTube: <a href="https://youtube.com/c/hilzevonck">click here</a></pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
 </div>
@@ -468,8 +525,13 @@ function onChangePage(idx) {
 		}
 	}
 
-	document.getElementById("subpage_" + idx).scrollIntoView();
 	document.getElementById("page_" + page).style.display = "";
+	if(subpage == 0) {
+		document.location.href = "#top";
+	}
+	else {
+		document.getElementById("subpage_" + idx).scrollIntoView();
+	}
 	setUrlParam("page", idx);
 }
 function setUrlParam(key, value) {
@@ -569,24 +631,47 @@ function getUrlParams(url) {
 
 $(window).scroll(function() {
 		if ($(this).scrollTop() > 50) {
-			$('#topnav').width($('#topnav').width());
-			$('#topnav').css('left', ($( document ).width() - $('#topnav').width()) * 0.5);
+			$('#topnav').css("left", ($(document).width() - $('#topnav').width()) * 0.5);
+			$('#topnav').css("width", $('#topnav').css("width"));
             $('#topnav').addClass('fixed-navbar');
 			$('#navbar-filler').css("height", $('#topnav').css("height"));
+			
 		} else {
-			$('#topnav').width("100%");
-			$('#topnav').css('left', '0%');
+			$('#topnav').css("width", "100%");
+			$('#topnav').css("left", "0px");
 			$('#topnav').removeClass('fixed-navbar');
 			$('#navbar-filler').css("height", "0px");
+			
 		}
 	});
-	
+
 	function resizeNavbar() {
 		var x = document.getElementById("topnav");
 		if (x.classList.contains("responsive")) {
 		    x.classList.remove("responsive");
 		} else {
 		    x.classList.add("responsive");
+		}
+
+		var all_dropdown_contents = document.getElementsByClassName("dropdown-content");
+		var i;
+		for (i = 0; i < all_dropdown_contents.length; i++) {
+			if (all_dropdown_contents[i].className === "dropdown-content") {
+				all_dropdown_contents[i].className += " small-content";
+				
+				all_dropdown_contents[i].style.visibility = "visible";
+				all_dropdown_contents[i].style.opacity = "1.0";
+				all_dropdown_contents[i].style.position = "relative";
+				all_dropdown_contents[i].style.paddingLeft = "50px";
+
+			} else {
+				all_dropdown_contents[i].className = "dropdown-content";
+				all_dropdown_contents[i].style.visibility = "hidden";
+				all_dropdown_contents[i].style.opacity = "0.0";
+				all_dropdown_contents[i].style.position = "absolute";
+				all_dropdown_contents[i].style.paddingLeft = "0px";
+				all_dropdown_contents[i].removeAttribute("style");
+			}
 		}
 	}
 
