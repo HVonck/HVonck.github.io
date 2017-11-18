@@ -583,10 +583,10 @@ $(window).scroll(function() {
 	
 	function resizeNavbar() {
 		var x = document.getElementById("topnav");
-		if (x.className === "navbar") {
-		    x.className += " responsive";
+		if (x.classList.contains("responsive")) {
+		    x.classList.remove("responsive");
 		} else {
-		    x.className = "navbar";
+		    x.classList.add("responsive");
 		}
 	}
 
