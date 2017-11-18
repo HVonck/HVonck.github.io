@@ -536,6 +536,9 @@ function onChangePage(idx) {
 		document.getElementById("subpage_" + idx).scrollIntoView();
 	}
 	setUrlParam("page", idx);
+
+	var event = new CustomEvent("resize");
+	document.dispatchEvent(event);
 }
 function setUrlParam(key, value) {
 
