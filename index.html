@@ -28,81 +28,40 @@
 		font-family: "avenir";
 	}
 body {margin:0;}
-
+	
 	.navbar {
 	    padding: 0;
 	    overflow: hidden;
-	    background-color: #f1c40e;
 	    width: 100%;
-		font-family: Arial;
+	    background-color: #f1c40e;
+		font-family: "avenir";
+		font-size: 1.0em;
 		z-index:10;
 	}
 
-	.navbar-icon {
+	.navbar a {
 		float: left;
 	    color: #2c2c2c;
 	    text-align: center;
-	    padding: 14px 16px;
-	    text-decoration: none;
-		font-size: 16px;
-	}
-
-	.dropdown {
-		float: left;
-		display: inline-block;
-	}
-	
-	.dropbtn {
-	    display: inline-block;
-	    color: #2c2c2c;
-	    text-align: center;
-	    padding: 14px 16px;
+	    padding: 1em 1em;
 	    text-decoration: none;
 	}
 
-	.navbar a:hover, .dropdown:hover .dropbtn {
-	    background-color: #d9b00d;
-	}
-
-	.dropdown-content {
-		visibility: hidden;
-	    opacity: 0;
-	    transition-property: opacity, visibility;
-	    transition-duration: .1s, 0s;
-	    transition-delay: 0s, .4s;
-
-		display: block;
-		position: fixed;
-	    background-color: #f1c40e;
-		min-width: 160px;
-		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-		z-index: 1;
-	}
-
-	.dropdown-content a {
-		transition: opacity .25s ease-in-out;
-		display: block;
-		alpha: 1.0;
-	    color: #2c2c2c;
-		text-align: left;
-		padding: 12px 16px;
-		text-decoration: none;
-	}
-
-	.dropdown-content a:hover {
+	.navbar a:hover {
 	    background-color: #d9b00d;
 	}
 
 	.active {
 	    background-color: #c19c0b;
 	}
-	
+
 	.navbar.fixed-navbar {
 	    position:fixed;
 	    top:0;
 	    left:0;
 	    right:0;
 	    margin:0;
+		z-index:100;
 	}
 	.navbar.responsive.fixed-navbar {
 	    position:fixed;
@@ -112,42 +71,33 @@ body {margin:0;}
 	    margin:0;
 	}
 
-	.dropdown:hover .dropdown-content {
-		visibility: visible;
-		opacity: 1.0;
-		transition-delay: 0s, 0s;
-		transition-duration: .25s, 0s;
-	}
-
 	.navbar .navbar-icon {
 		display: none;
 	}
 
 	@media screen and (max-width: 600px) {
-	  .navbar div:not(:first-child) { display: none; }
+	  .navbar a:not(:first-child) {display: none;}
 	  .navbar a.navbar-icon {
 		float: right;
 		display: block;
-		height: 45px;
+		height: 3.25em;
 		width: auto;
 	  }
 	}
 
 	/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
 	@media screen and (max-width: 600px) {
-		.navbar.responsive {
-			position: fixed;
-		}
-		.navbar.responsive a.navbar-icon {
-			position: absolute;
-			right: 0;
-			top: 0;
-		}
-		.navbar.responsive div {
-			float: none;
-			display: block;
-			text-align: left;
-		}
+	  .navbar.responsive {position: relative;}
+	  .navbar.responsive a.navbar-icon {
+		position: absolute;
+		right: 0;
+		top: 0;
+	  }
+	  .navbar.responsive a {
+		float: none;
+		display: block;
+		text-align: left;
+	  }
 	}
 .code-resize-animation {
 		transition: all .5s linear;
@@ -365,16 +315,10 @@ body {margin:0;}
 		</div>
 			<div class="column middle"><div style="height:0px" id="navbar-filler"></div>
 <div class="navbar" id="topnav">
-<div class="dropdown">
-<a id="menu_btn_0_0" class="menu_btn dropbtn active" onclick="onChangePage('0_0')">Introduction</a>
-<div class="dropdown-content"><a onclick="onChangePage('0_1')"> Lorem ipsum.</a><a onclick="onChangePage('0_2')"> Bacon ipsum.</a></div></div>
-<div class="dropdown">
-<a id="menu_btn_1_0" class="menu_btn dropbtn" onclick="onChangePage('1_0')">Elements</a>
-<div class="dropdown-content"><a onclick="onChangePage('1_1')"> Examples.</a><a onclick="onChangePage('1_2')"> Videos.</a></div></div>
-<div class="dropdown">
-<a id="menu_btn_2_0" class="menu_btn dropbtn" onclick="onChangePage('2_0')">Contact</a>
-<div class="dropdown-content"><a onclick="onChangePage('2_1')">contact</a></div></div>
-<a href="javascript:void(0);" style="font-size:15px; " class="navbar-icon" onclick="resizeNavbar()">&#9776;</a></div>
+<a id="menu_btn_0_0" class="menu_btn active" onclick="onChangePage('0_0')">Introduction</a>
+<a id="menu_btn_1_0" class="menu_btn " onclick="onChangePage('1_0')">Elements</a>
+<a id="menu_btn_2_0" class="menu_btn " onclick="onChangePage('2_0')">Contact</a>
+<a href="javascript:void(0);" class="navbar-icon" onclick="resizeNavbar()">&#9776;</a></div>
 
 			</div>
 		<div class="column side">
@@ -638,47 +582,24 @@ function getUrlParams(url) {
 
 $(window).scroll(function() {
 		if ($(this).scrollTop() > 50) {
-			$('#topnav').css("left", ($(document).width() - $('#topnav').width()) * 0.5);
-			$('#topnav').css("width", $('#topnav').css("width"));
+			$('#topnav').width($('#topnav').width());
+			$('#topnav').css('left', ($( document ).width() - $('#topnav').width()) * 0.5);
             $('#topnav').addClass('fixed-navbar');
 			$('#navbar-filler').css("height", $('#topnav').css("height"));
-			
 		} else {
-			$('#topnav').css("width", "100%");
-			$('#topnav').css("left", "0px");
+			$('#topnav').width("100%");
+			$('#topnav').css('left', '0%');
 			$('#topnav').removeClass('fixed-navbar');
 			$('#navbar-filler').css("height", "0px");
-			
 		}
 	});
-
+	
 	function resizeNavbar() {
 		var x = document.getElementById("topnav");
 		if (x.classList.contains("responsive")) {
 		    x.classList.remove("responsive");
 		} else {
 		    x.classList.add("responsive");
-		}
-
-		var all_dropdown_contents = document.getElementsByClassName("dropdown-content");
-		var i;
-		for (i = 0; i < all_dropdown_contents.length; i++) {
-			if (all_dropdown_contents[i].className === "dropdown-content") {
-				all_dropdown_contents[i].className += " small-content";
-				
-				all_dropdown_contents[i].style.visibility = "visible";
-				all_dropdown_contents[i].style.opacity = "1.0";
-				all_dropdown_contents[i].style.position = "relative";
-				all_dropdown_contents[i].style.paddingLeft = "50px";
-
-			} else {
-				all_dropdown_contents[i].className = "dropdown-content";
-				all_dropdown_contents[i].style.visibility = "hidden";
-				all_dropdown_contents[i].style.opacity = "0.0";
-				all_dropdown_contents[i].style.position = "absolute";
-				all_dropdown_contents[i].style.paddingLeft = "0px";
-				all_dropdown_contents[i].removeAttribute("style");
-			}
 		}
 	}
 
