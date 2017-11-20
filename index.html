@@ -248,6 +248,7 @@ body {margin:0;}
 	    right:0;
 	    margin:0;
 	}
+
 	.navbar.responsive.fixed-navbar {
 	    position:fixed;
 	    top:0;
@@ -257,7 +258,9 @@ body {margin:0;}
 	}
 
 	.navbar .navbar-icon {
-		display:none;
+		display: none;
+		cursor: pointer;
+	    padding: 1em 1em;
 	}
 
 	.dropdown:hover .dropdown-content {
@@ -267,29 +270,49 @@ body {margin:0;}
 		transition-duration: .25s, 0s;
 	}
 
-	.navbar .navbar-icon {
-		display: none;
+	.navbar-icon-bar1, .navbar-icon-bar2, .navbar-icon-bar3 {
+		width: 1.000000em;
+		height: 0.140000em;
+		background-color: #333;
+		margin: 0.170000em 0em;
+		transition: 0.4s;
+		display: block;
 	}
 
+	.navbar-icon-change .navbar-icon-bar1 {
+		-webkit-transform: rotate(-45deg) translate(-0.260000em, 0.170000em);
+		transform: rotate(-45deg) translate(-0.260000em, 0.170000em);
+	}
+
+	.navbar-icon-change .navbar-icon-bar2 {opacity: 0;}
+
+	.navbar-icon-change .navbar-icon-bar3 {
+		-webkit-transform: rotate(45deg) translate(-0.230000em, -0.230000em);
+		transform: rotate(45deg) translate(-0.230000em, -0.230000em);
+	}
+	
 	@media screen and (max-width: 600px) {
 	  .navbar div:not(:first-child) { display: none; }
-	  .navbar a.navbar-icon {
+	  .navbar div.navbar-icon {
 		float: right;
 		display: block;
-		height: 45px;
 		width: auto;
+	  }
+	  .navbar div.navbar-icon .navbar-icon-bar2 {
+	    display: block;
+	  }
+	  .navbar div.navbar-icon .navbar-icon-bar3 {
+		display: block;
 	  }
 	}
 
 	/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
 	@media screen and (max-width: 600px) {
-		.navbar.responsive {
-			position: fixed;
-		}
-		.navbar.responsive a.navbar-icon {
-			position: absolute;
+		.navbar.responsive div.navbar-icon {
+			position: relative;
 			right: 0;
 			top: 0;
+			float: right;
 		}
 		.navbar.responsive div {
 			float: none;
@@ -327,30 +350,47 @@ body {margin:0;}
 		}
 	}
 	.portfolio-table {
-		font-family: arial; 
 		align:top; 
 		border-collapse: collapse; 
+		border-style: hidden;
 		padding: 0.5em; 
 		width: 100%; 
 		border: 1px solid #ddd;
-		background-color:white;
+		max-width:20em;
+		margin: auto;
+		font-family: avenir; 
+		color: black
+		font-size: 1em
 	}
 
-	.portfolio-table td, .portfolio-table th {
-		border: 1px solid #ddd;
-		padding: 0.5em;
+	.portfolio-table td {
+		border: 1px solid black;
+		padding: 0.25em;
+	}
+
+	.portfolio-header {
+		text-align:center; 
+		font-weight:bold;
+		font-family: avenir;
+		color: black;
+		font-size: 2em;
+		margin:0px;
+		width: 100%;
 	}
 
 	.portfolio-table tr:nth-child(even){background-color: #f2f2f2;}
+	.portfolio-table tr:nth-child(odd){background-color: #ffffff;}
 
-	.portfolio-table tr:hover {background-color: #ddd;}
+	.portfolio-table tr:hover {background-color: #ffffff;}
+		
+	.portfolio-table td {
+		width:50%;
+	}
 
-	.portfolio-table th {
-		padding-top: 12px;
-		padding-bottom: 12px;
-		text-align: left;
-		background-color: #4CAF50;
-		color: white;
+	@media screen and (max-width: 600px) {
+		.portfolio-table {
+			max-width:100%;
+		}
 	}
 
 .footer {
@@ -404,7 +444,7 @@ body {margin:0;}
 <div class="dropdown">
 <a id="menu_btn_2_0" class="menu_btn dropbtn" onclick="onChangePage('2_0')">Contact</a>
 <div class="dropdown-content"><a onclick="onChangePage('2_1')">contact</a></div></div>
-<a href="javascript:void(0);" style="font-size:15px; " class="navbar-icon" onclick="resizeNavbar()">&#9776;</a></div>
+<div class="navbar-icon" onclick="resizeNavbar()"><div class="navbar-icon-bar1"></div><div class="navbar-icon-bar2"></div><div class="navbar-icon-bar3"></div></div></div>
 
 			</div>
 		<div class="column side">
@@ -412,7 +452,7 @@ body {margin:0;}
 	</div><div class="page" id="page_0">
 
 	<div class="row">
-		<div class="column side"><table class="portfolio-table"><tr><td colspan="2"><img width="100%" src="https://scontent-ams3-1.xx.fbcdn.net/v/t1.0-9/10418941_1557268777829202_1468980730405045962_n.jpg?oh=864cb34a392ac1670cebb566887b89de&oe=5A91F6F1"></img></td></tr><tr><td colspan="2"><h1 style="text-align:center;" width="100%">Hilze Vonck</h1></td></tr><tr><td>education</td><td>NTHV Breda [IGAD]</td></tr><tr><td>age</td><td><div id="my_age">not calculated</div></td></tr><tr><td>Skills</td><td>C++<br>Lua<br>HTML<br>CSS<br>JavaScript</td></tr></table>		</div>
+		<div class="column side"><table class="portfolio-table"><tr><td colspan="2"><center><img width="100%" style="position:relative; margin: auto; max-width:20em;" src="https://scontent-ams3-1.xx.fbcdn.net/v/t1.0-9/10418941_1557268777829202_1468980730405045962_n.jpg?oh=864cb34a392ac1670cebb566887b89de&oe=5A91F6F1"></img></center></td></tr><tr><td colspan="2"><pre class="portfolio-header">Hilze Vonck</pre></td></tr><tr><td>Age</td><td><span class="calculate-age">not calculated</span> years old</td></tr><tr><td>Education</td><td>NTHV Breda [IGAD]</td></tr><tr><td>Engines</td><td>Unity<br>UE4</td></tr><tr><td>Graphics API's</td><td>OpenGL<br>DirectX 11<br>GNMX</td></tr><tr><td>Languages</td><td>Proficient in Dutch<br>Proficient in English</td></tr><tr><td>Programming Languages</td><td>C++<br>C#<br>HTML</td></tr><tr><td>Shader Languages</td><td>HLSL<br>GLSL<br>PSSL</td></tr><tr><td>Version Control Systems</td><td>Perforce<br>GIT<br>Turtoise SVN</td></tr></table>		</div>
 			<div class="column middle"><div id="subpage_0_1" style="width:100%; display:inline-block; background-color:#434343"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Lorem ipsum.</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
@@ -435,7 +475,7 @@ body {margin:0;}
 <div class="page" id="page_1">
 
 	<div class="row">
-		<div class="column side"><table class="portfolio-table"><tr><td colspan="2"><img width="100%" src="https://scontent-ams3-1.xx.fbcdn.net/v/t1.0-9/10418941_1557268777829202_1468980730405045962_n.jpg?oh=864cb34a392ac1670cebb566887b89de&oe=5A91F6F1"></img></td></tr><tr><td colspan="2"><h1 style="text-align:center;" width="100%">Hilze Vonck</h1></td></tr><tr><td>education</td><td>NTHV Breda [IGAD]</td></tr><tr><td>age</td><td><div id="my_age">not calculated</div></td></tr><tr><td>Skills</td><td>C++<br>Lua<br>HTML<br>CSS<br>JavaScript</td></tr></table>		</div>
+		<div class="column side"><table class="portfolio-table"><tr><td colspan="2"><center><img width="100%" style="position:relative; margin: auto; max-width:20em;" src="https://scontent-ams3-1.xx.fbcdn.net/v/t1.0-9/10418941_1557268777829202_1468980730405045962_n.jpg?oh=864cb34a392ac1670cebb566887b89de&oe=5A91F6F1"></img></center></td></tr><tr><td colspan="2"><pre class="portfolio-header">Hilze Vonck</pre></td></tr><tr><td>Age</td><td><span class="calculate-age">not calculated</span> years old</td></tr><tr><td>Education</td><td>NTHV Breda [IGAD]</td></tr><tr><td>Engines</td><td>Unity<br>UE4</td></tr><tr><td>Graphics API's</td><td>OpenGL<br>DirectX 11<br>GNMX</td></tr><tr><td>Languages</td><td>Proficient in Dutch<br>Proficient in English</td></tr><tr><td>Programming Languages</td><td>C++<br>C#<br>HTML</td></tr><tr><td>Shader Languages</td><td>HLSL<br>GLSL<br>PSSL</td></tr><tr><td>Version Control Systems</td><td>Perforce<br>GIT<br>Turtoise SVN</td></tr></table>		</div>
 			<div class="column middle"><div id="subpage_1_1" style="width:100%; display:inline-block; background-color:#434343"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Examples.</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">This here is an example of the ::code() function:</pre>
 <pre style="position:relative; left:5%; width: 90%" id="code-0"><code style="padding: 0em; height: auto; max-height:10em" class="code-resize-animation c++">#pragma once
@@ -499,7 +539,7 @@ class ResponsiveDropdownMenu : public Menu
 <div class="page" id="page_2">
 
 	<div class="row">
-		<div class="column side"><table class="portfolio-table"><tr><td colspan="2"><img width="100%" src="https://scontent-ams3-1.xx.fbcdn.net/v/t1.0-9/10418941_1557268777829202_1468980730405045962_n.jpg?oh=864cb34a392ac1670cebb566887b89de&oe=5A91F6F1"></img></td></tr><tr><td colspan="2"><h1 style="text-align:center;" width="100%">Hilze Vonck</h1></td></tr><tr><td>education</td><td>NTHV Breda [IGAD]</td></tr><tr><td>age</td><td><div id="my_age">not calculated</div></td></tr><tr><td>Skills</td><td>C++<br>Lua<br>HTML<br>CSS<br>JavaScript</td></tr></table>		</div>
+		<div class="column side"><table class="portfolio-table"><tr><td colspan="2"><center><img width="100%" style="position:relative; margin: auto; max-width:20em;" src="https://scontent-ams3-1.xx.fbcdn.net/v/t1.0-9/10418941_1557268777829202_1468980730405045962_n.jpg?oh=864cb34a392ac1670cebb566887b89de&oe=5A91F6F1"></img></center></td></tr><tr><td colspan="2"><pre class="portfolio-header">Hilze Vonck</pre></td></tr><tr><td>Age</td><td><span class="calculate-age">not calculated</span> years old</td></tr><tr><td>Education</td><td>NTHV Breda [IGAD]</td></tr><tr><td>Engines</td><td>Unity<br>UE4</td></tr><tr><td>Graphics API's</td><td>OpenGL<br>DirectX 11<br>GNMX</td></tr><tr><td>Languages</td><td>Proficient in Dutch<br>Proficient in English</td></tr><tr><td>Programming Languages</td><td>C++<br>C#<br>HTML</td></tr><tr><td>Shader Languages</td><td>HLSL<br>GLSL<br>PSSL</td></tr><tr><td>Version Control Systems</td><td>Perforce<br>GIT<br>Turtoise SVN</td></tr></table>		</div>
 			<div class="column middle"><div id="subpage_2_1" style="width:100%; display:inline-block; background-color:#434343"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 1.5em; color: #f5d34b">contact</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">YouTube: <a href="https://youtube.com/c/hilzevonck">click here</a></pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
@@ -697,13 +737,12 @@ function getUrlParams(url) {
 			$('#topnav').css("left", ($(document).width() - $('#topnav').width()) * 0.5);
 			$('#topnav').css("width", $('#topnav').css("width"));
             $('#topnav').addClass('fixed-navbar');
-			
+
 			var x = document.getElementsByClassName("page");
 			var i;
 			for (i = 0; i < x.length; i++) {
 				$(x[i]).css('margin-top', $('#topnav').height());
 			}
-			
 		} else {
 			$('#topnav').css("width", "100%");
 			$('#topnav').css("left", "0px");
@@ -715,15 +754,34 @@ function getUrlParams(url) {
 				$(x[i]).css('margin-top', '0px');
 			}		
 		}
+		if(document.getElementById("topnav").classList.contains("responsive")) {
+			resizeNavbar();
+		}
 	}
 
 	window.addEventListener("scroll", scrollNavbar);
 
 	function resizeNavbar() {
+		document.getElementsByClassName("navbar-icon")[0].classList.toggle('navbar-icon-change');
+		
 		var x = document.getElementById("topnav");
 		if (x.classList.contains("responsive")) {
+			var v = document.getElementsByClassName("page");
+			var i;
+			for (i = 0; i < v.length; i++) {
+				$(v[i]).css('margin-top', '0px');
+			}
+
 		    x.classList.remove("responsive");
 		} else {
+			if ($(this).scrollTop() > navbar_offset) {
+				var v = document.getElementsByClassName("page");
+				var i;
+				for (i = 0; i < v.length; i++) {
+					$(v[i]).css('margin-top', $('#topnav').height());
+				}
+			}
+
 		    x.classList.add("responsive");
 		}
 
