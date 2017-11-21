@@ -161,7 +161,75 @@
 		.image-modal-content {
 			width: 100%;
 		}
-	}.header {
+	}
+	
+	.collapsable-container
+	{
+		background: #ddd;
+		border: 0.25em solid black;
+		border-radius: 1em;
+		float: left;
+		position: relative;
+		width: 100%;
+		overflow: hidden;
+	}
+
+	.collapsable-hidden
+	{
+		display:none;
+	}
+
+	.collapsable-grayscale
+	{
+		-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+		filter: grayscale(100%);
+	}
+	.collapsable-grayscale:hover {
+		-webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+		filter: grayscale(0%);
+	}
+
+	.collapsable-banner
+	{
+		-webkit-background-clip: padding-box;
+		-moz-background-clip:    padding; 
+		background-clip:         padding-box;
+		width: 100%;
+		display: block;
+		transition: filter .25s ease-in-out;
+	}
+
+	.collapsable-button
+	{
+		position: absolute;
+		right: 0;
+		top: 0;
+		font-size: 1em;
+		
+		-moz-transform:rotate(-90deg);
+		-ms-transform:rotate(-90deg);
+		-o-transform:rotate(-90deg);
+		-webkit-transform:rotate(-90deg);
+		transform-origin: bottom right;
+		width:
+	}
+
+	.collapsable-title
+	{
+		font-size: 3em;
+		color: #f1c40e;
+		font-family:avenir;
+
+		-webkit-text-stroke: 1.0px #000000;
+		
+		position: absolute;
+		top: 50%;
+		left: 50%; 
+		text-align: center;
+		transform: translateX(-50%) translateY(-50%);
+		pointer-events: none;
+	}
+.header {
 		background-color: #f5d34b;
 		padding: 20px;
 		text-align: center;
@@ -179,7 +247,7 @@
 		font-family: "avenir";
 	}
 body {margin:0;}
-
+	
 	.navbar {
 	    padding: 0;
 	    overflow: hidden;
@@ -191,64 +259,31 @@ body {margin:0;}
 		margin: 0;
 	}
 
-	.dropdown {
+	.navbar a {
 		float: left;
-		display: inline-block;
-	}
-	
-	.dropbtn {
-	    display: inline-block;
 	    color: #2c2c2c;
 	    text-align: center;
 	    padding: 1em 1em;
 	    text-decoration: none;
 	}
 
-	.navbar a:hover, .dropdown:hover .dropbtn {
-	    background-color: #d9b00d;
-	}
-
-	.dropdown-content {
-		visibility: hidden;
-	    opacity: 0;
-	    transition-property: opacity, visibility;
-	    transition-duration: .1s, 0s;
-	    transition-delay: 0s, .4s;
-
-		display: block;
-		position: fixed;
-	    background-color: #f1c40e;
-		min-width: 160px;
-		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-		z-index: 1;
-	}
-
-	.dropdown-content a {
-		transition: opacity .25s ease-in-out;
-		display: block;
-		alpha: 1.0;
-	    color: #2c2c2c;
-		text-align: left;
-	    padding: 1em 1em;
-		text-decoration: none;
-	}
-
-	.dropdown-content a:hover {
+	.navbar a:hover {
 	    background-color: #d9b00d;
 	}
 
 	.active {
 	    background-color: #c19c0b;
 	}
-	
+
 	.navbar.fixed-navbar {
 	    position:fixed;
 	    top:0;
 	    left:0;
 	    right:0;
 	    margin:0;
+		z-index:100;
 	}
-
+	
 	.navbar.responsive.fixed-navbar {
 	    position:fixed;
 	    top:0;
@@ -259,66 +294,31 @@ body {margin:0;}
 
 	.navbar .navbar-icon {
 		display: none;
-		cursor: pointer;
-	    padding: 1em 1em;
 	}
 
-	.dropdown:hover .dropdown-content {
-		visibility: visible;
-		opacity: 1.0;
-		transition-delay: 0s, 0s;
-		transition-duration: .25s, 0s;
-	}
-
-	.navbar-icon-bar1, .navbar-icon-bar2, .navbar-icon-bar3 {
-		width: 1.000000em;
-		height: 0.140000em;
-		background-color: #333;
-		margin: 0.170000em 0em;
-		transition: 0.4s;
-		display: block;
-	}
-
-	.navbar-icon-change .navbar-icon-bar1 {
-		-webkit-transform: rotate(-45deg) translate(-0.260000em, 0.170000em);
-		transform: rotate(-45deg) translate(-0.260000em, 0.170000em);
-	}
-
-	.navbar-icon-change .navbar-icon-bar2 {opacity: 0;}
-
-	.navbar-icon-change .navbar-icon-bar3 {
-		-webkit-transform: rotate(45deg) translate(-0.230000em, -0.230000em);
-		transform: rotate(45deg) translate(-0.230000em, -0.230000em);
-	}
-	
 	@media screen and (max-width: 600px) {
-	  .navbar div:not(:first-child) { display: none; }
-	  .navbar div.navbar-icon {
+	  .navbar a:not(:first-child) {display: none;}
+	  .navbar a.navbar-icon {
 		float: right;
 		display: block;
+		height: 3.25em;
 		width: auto;
-	  }
-	  .navbar div.navbar-icon .navbar-icon-bar2 {
-	    display: block;
-	  }
-	  .navbar div.navbar-icon .navbar-icon-bar3 {
-		display: block;
 	  }
 	}
 
 	/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
 	@media screen and (max-width: 600px) {
-		.navbar.responsive div.navbar-icon {
-			position: relative;
-			right: 0;
-			top: 0;
-			float: right;
-		}
-		.navbar.responsive div {
-			float: none;
-			display: block;
-			text-align: left;
-		}
+	  .navbar.responsive {position: relative;}
+	  .navbar.responsive a.navbar-icon {
+		position: absolute;
+		right: 0;
+		top: 0;
+	  }
+	  .navbar.responsive a {
+		float: none;
+		display: block;
+		text-align: left;
+	  }
 	}
 
 	* {
@@ -349,50 +349,6 @@ body {margin:0;}
 		    width: 100%;
 		}
 	}
-	.portfolio-table {
-		align:top; 
-		border-collapse: collapse; 
-		border-style: hidden;
-		padding: 0.5em; 
-		width: 100%; 
-		border: 1px solid #ddd;
-		max-width:20em;
-		margin: auto;
-		font-family: avenir; 
-		color: black
-		font-size: 1em
-	}
-
-	.portfolio-table td {
-		border: 1px solid black;
-		padding: 0.25em;
-	}
-
-	.portfolio-header {
-		text-align:center; 
-		font-weight:bold;
-		font-family: avenir;
-		color: black;
-		font-size: 2em;
-		margin:0px;
-		width: 100%;
-	}
-
-	.portfolio-table tr:nth-child(even){background-color: #f2f2f2;}
-	.portfolio-table tr:nth-child(odd){background-color: #ffffff;}
-
-	.portfolio-table tr:hover {background-color: #ffffff;}
-		
-	.portfolio-table td {
-		width:50%;
-	}
-
-	@media screen and (max-width: 600px) {
-		.portfolio-table {
-			max-width:100%;
-		}
-	}
-
 .footer {
 		background-color: #f5d34b;
 		padding: 20px;
@@ -435,16 +391,10 @@ body {margin:0;}
 		<div class="column side">
 		</div>
 			<div class="column middle"><div class="navbar" id="topnav">
-<div class="dropdown">
-<a id="menu_btn_0_0" class="menu_btn dropbtn active" onclick="onChangePage('0_0')">Introduction</a>
-<div class="dropdown-content"><a onclick="onChangePage('0_1')"> Lorem ipsum.</a><a onclick="onChangePage('0_2')"> Bacon ipsum.</a></div></div>
-<div class="dropdown">
-<a id="menu_btn_1_0" class="menu_btn dropbtn" onclick="onChangePage('1_0')">Elements</a>
-<div class="dropdown-content"><a onclick="onChangePage('1_1')"> Examples.</a><a onclick="onChangePage('1_2')"> Videos.</a></div></div>
-<div class="dropdown">
-<a id="menu_btn_2_0" class="menu_btn dropbtn" onclick="onChangePage('2_0')">Contact</a>
-<div class="dropdown-content"><a onclick="onChangePage('2_1')">contact</a></div></div>
-<div class="navbar-icon" onclick="resizeNavbar()"><div class="navbar-icon-bar1"></div><div class="navbar-icon-bar2"></div><div class="navbar-icon-bar3"></div></div></div>
+<a id="menu_btn_0_0" class="menu_btn active" onclick="onChangePage('0_0')">Introduction</a>
+<a id="menu_btn_1_0" class="menu_btn " onclick="onChangePage('1_0')">Elements</a>
+<a id="menu_btn_2_0" class="menu_btn " onclick="onChangePage('2_0')">Contact</a>
+<a href="javascript:void(0);" class="navbar-icon" onclick="resizeNavbar()">&#9776;</a></div>
 
 			</div>
 		<div class="column side">
@@ -452,21 +402,46 @@ body {margin:0;}
 	</div><div class="page" id="page_0">
 
 	<div class="row">
-		<div class="column side"><table class="portfolio-table"><tr><td colspan="2"><center><img width="100%" style="position:relative; margin: auto; max-width:20em;" src="https://scontent-ams3-1.xx.fbcdn.net/v/t1.0-9/10418941_1557268777829202_1468980730405045962_n.jpg?oh=864cb34a392ac1670cebb566887b89de&oe=5A91F6F1"></img></center></td></tr><tr><td colspan="2"><pre class="portfolio-header">Hilze Vonck</pre></td></tr><tr><td>Age</td><td><span class="calculate-age">not calculated</span> years old</td></tr><tr><td>Education</td><td>NTHV Breda [IGAD]</td></tr><tr><td>Engines</td><td>Unity<br>UE4</td></tr><tr><td>Graphics API's</td><td>OpenGL<br>DirectX 11<br>GNMX</td></tr><tr><td>Languages</td><td>Proficient in Dutch<br>Proficient in English</td></tr><tr><td>Programming Languages</td><td>C++<br>C#<br>HTML</td></tr><tr><td>Shader Languages</td><td>HLSL<br>GLSL<br>PSSL</td></tr><tr><td>Version Control Systems</td><td>Perforce<br>GIT<br>Turtoise SVN</td></tr></table>		</div>
-			<div class="column middle"><div id="subpage_0_1" style="width:100%; display:inline-block; background-color:#434343"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Lorem ipsum.</pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</pre>
+		<div class="column side">
+		</div>
+			<div class="column middle"><div id="subpage_0_1" style="padding: 1em; width: 100%; display: inline-block; background-color:#434343"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Introduction.</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">Hello.</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">My name is Hilze Vonck.</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">I am a third year programming student at NHTV Breda [IGAD].</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">I enjoy graphics programming and PS4 programming.</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
-</div><div id="subpage_0_2" style="width:100%; display:inline-block; background-color:#333333"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Bacon ipsum.</pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">Bacon ipsum dolor amet ball tip doner kielbasa short loin strip steak buffalo biltong beef ribs. Pastrami sausage short ribs, shank swine pork loin doner cow capicola drumstick rump. Turkey leberkas ribeye, cupim pancetta cow tenderloin beef. Flank ball tip landjaeger shankle kielbasa pork cow strip steak salami. Tenderloin turducken ham hock tri-tip, tail bresaola buffalo brisket. Strip steak turducken flank cupim cow, biltong kevin shankle bacon tenderloin ham hock jerky.</pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">Pancetta cow shoulder pork belly. Burgdoggen kielbasa alcatra kevin jowl turducken. Pancetta sirloin meatball shoulder brisket pork loin meatloaf andouille kielbasa beef doner jowl burgdoggen pork chop. Short ribs salami kielbasa pork andouille meatball bresaola ham beef short loin pork loin. Short loin doner sausage burgdoggen ham porchetta, rump kevin kielbasa spare ribs. Beef fatback pork belly kielbasa pig burgdoggen andouille turkey ham hock t-bone picanha.</pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">Bacon pancetta meatball turducken. Tail ground round short loin picanha, short ribs bacon hamburger. Shankle sausage venison meatball pastrami, shoulder swine ham hock pork. Prosciutto ham hock andouille flank, boudin t-bone turducken tongue drumstick swine landjaeger ribeye turkey brisket.</pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">Ball tip burgdoggen tri-tip picanha fatback. Short ribs beef jerky turkey, prosciutto turducken tenderloin cupim filet mignon leberkas boudin meatball pork chop alcatra. Sirloin ground round filet mignon pork chop meatloaf pastrami, landjaeger jerky chicken drumstick shank porchetta bacon boudin sausage. Kevin porchetta kielbasa tri-tip jowl andouille fatback buffalo turkey biltong drumstick shankle picanha corned beef. Flank shankle buffalo pig spare ribs. Tri-tip pork loin kielbasa salami ground round buffalo brisket pork chop pig boudin strip steak ribeye biltong.</pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">Sausage rump beef meatloaf, bresaola fatback sirloin chuck prosciutto pig. Ball tip strip steak pastrami landjaeger frankfurter, pork belly alcatra. Ham sirloin ribeye kielbasa kevin sausage turducken porchetta venison cupim salami ground round short loin fatback beef ribs. Venison strip steak pork loin sirloin, andouille turducken meatball doner boudin swine landjaeger.</pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
+</div><div id="subpage_0_2" style="padding: 1em; width: 100%; display: inline-block; background-color:#333333"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Projects.</pre>
+
+	<div class="collapsable-container">
+		<div style="position: relative;">
+			<img class="collapsable-grayscale collapsable-banner" id="collapsable_banner_0" src="images/banner_nebelkampf.png"></img>
+			<button class="collapsable-button" onclick="collapsableToggle(0);">
+			Expand
+			</button>
+			<span class="collapsable-title">Nebelkamp</span>
+		</div>
+		<div id="collapsable_0" style="padding:1em;">
+
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">This project was called Nebelkampf. And I have done post processing for this project.</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">  </pre>
+<div style="position:relative; left:5.000000%; width:90.000000%""><div class="ba-slider"><img src="images/all_enabled.png" alt="Without Post-Processing">	<div class="resize">		<img src="images/all_disabled.png" alt="With Post-Processing">	</div>	<span class="handle"></span></div><pre style="left:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">Without Post-Processing</pre><pre style="right:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">With Post-Processing</pre></div>
+</div></div>
+
+	<div class="collapsable-container">
+		<div style="position: relative;">
+			<img class="collapsable-grayscale collapsable-banner" id="collapsable_banner_1" src="images/banner_sulphur.png"></img>
+			<button class="collapsable-button" onclick="collapsableToggle(1);">
+			Expand
+			</button>
+			<span class="collapsable-title">Project Sulphur</span>
+		</div>
+		<div id="collapsable_1" style="padding:1em;">
+
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">This project is called Project Sulphur. We are creating a custom engine and I am going to do all of the PS4 programming for this project.</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">  </pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">Check out the <a href="https://project-sulphur.com">website</a>.</pre>
+</div></div>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">  </pre>
 </div>
 			</div>
 		<div class="column side">
@@ -475,8 +450,9 @@ body {margin:0;}
 <div class="page" id="page_1">
 
 	<div class="row">
-		<div class="column side"><table class="portfolio-table"><tr><td colspan="2"><center><img width="100%" style="position:relative; margin: auto; max-width:20em;" src="https://scontent-ams3-1.xx.fbcdn.net/v/t1.0-9/10418941_1557268777829202_1468980730405045962_n.jpg?oh=864cb34a392ac1670cebb566887b89de&oe=5A91F6F1"></img></center></td></tr><tr><td colspan="2"><pre class="portfolio-header">Hilze Vonck</pre></td></tr><tr><td>Age</td><td><span class="calculate-age">not calculated</span> years old</td></tr><tr><td>Education</td><td>NTHV Breda [IGAD]</td></tr><tr><td>Engines</td><td>Unity<br>UE4</td></tr><tr><td>Graphics API's</td><td>OpenGL<br>DirectX 11<br>GNMX</td></tr><tr><td>Languages</td><td>Proficient in Dutch<br>Proficient in English</td></tr><tr><td>Programming Languages</td><td>C++<br>C#<br>HTML</td></tr><tr><td>Shader Languages</td><td>HLSL<br>GLSL<br>PSSL</td></tr><tr><td>Version Control Systems</td><td>Perforce<br>GIT<br>Turtoise SVN</td></tr></table>		</div>
-			<div class="column middle"><div id="subpage_1_1" style="width:100%; display:inline-block; background-color:#434343"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Examples.</pre>
+		<div class="column side">
+		</div>
+			<div class="column middle"><div id="subpage_1_1" style="padding: 1em; width: 100%; display: inline-block; background-color:#434343"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Examples.</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">This here is an example of the ::code() function:</pre>
 <pre style="position:relative; left:5%; width: 90%" id="code-0"><code style="padding: 0em; height: auto; max-height:10em" class="code-resize-animation c++">#pragma once
 #include < fstream >
@@ -523,13 +499,13 @@ class ResponsiveDropdownMenu : public Menu
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">This here is an example of the ::comparator() function:</pre>
+<div style="position:relative; left:5.000000%; width:90.000000%""><div class="ba-slider"><img src="images/all_enabled.png" alt="Without Post-Processing">	<div class="resize">		<img src="images/all_disabled.png" alt="With Post-Processing">	</div>	<span class="handle"></span></div><pre style="left:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">Without Post-Processing</pre><pre style="right:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">With Post-Processing</pre></div>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
-<div style="position:relative; left:5.000000%; width:90.000000%""><div class="ba-slider"><img src="images/all_enabled.png" alt="Left">	<div class="resize">		<img src="images/all_disabled.png" alt="Right">	</div>	<span class="handle"></span></div><pre style="left:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">Left</pre><pre style="right:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">Right</pre></div>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
-</div><div id="subpage_1_2" style="width:100%; display:inline-block; background-color:#333333"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Videos.</pre>
+</div><div id="subpage_1_2" style="padding: 1em; width: 100%; display: inline-block; background-color:#333333"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Videos.</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">This here is an example of the ::video() function:</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
-<video controls frameborder="0" class="video-player"style="position:relative; background-color:black; height:auto; width:30.000000%; left:5.000000%"src="videos/yee.mp4"></video><video controls frameborder="0" class="video-player"style="position:relative; background-color:black; height:auto; width:30.000000%; left:5.000000%"src="videos/yee.mp4"></video><iframe controls frameborder="0" class="video-player"style="position:relative; background-color:black; height:auto; width:30.000000%; left:5.000000%"src="https://www.youtube.com/embed/ZZ5LpwO-An4"></iframe>
+<video controls frameborder="0" class="video-player"style="position:relative; background-color:black; height:auto; width:45.000000%; left:5.000000%"src="videos/yee.mp4"></video><iframe controls frameborder="0" class="video-player"style="position:relative; background-color:black; height:auto; width:45.000000%; left:5.000000%"src="https://www.youtube.com/embed/ZZ5LpwO-An4"></iframe>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
 </div>
 			</div>
@@ -539,8 +515,9 @@ class ResponsiveDropdownMenu : public Menu
 <div class="page" id="page_2">
 
 	<div class="row">
-		<div class="column side"><table class="portfolio-table"><tr><td colspan="2"><center><img width="100%" style="position:relative; margin: auto; max-width:20em;" src="https://scontent-ams3-1.xx.fbcdn.net/v/t1.0-9/10418941_1557268777829202_1468980730405045962_n.jpg?oh=864cb34a392ac1670cebb566887b89de&oe=5A91F6F1"></img></center></td></tr><tr><td colspan="2"><pre class="portfolio-header">Hilze Vonck</pre></td></tr><tr><td>Age</td><td><span class="calculate-age">not calculated</span> years old</td></tr><tr><td>Education</td><td>NTHV Breda [IGAD]</td></tr><tr><td>Engines</td><td>Unity<br>UE4</td></tr><tr><td>Graphics API's</td><td>OpenGL<br>DirectX 11<br>GNMX</td></tr><tr><td>Languages</td><td>Proficient in Dutch<br>Proficient in English</td></tr><tr><td>Programming Languages</td><td>C++<br>C#<br>HTML</td></tr><tr><td>Shader Languages</td><td>HLSL<br>GLSL<br>PSSL</td></tr><tr><td>Version Control Systems</td><td>Perforce<br>GIT<br>Turtoise SVN</td></tr></table>		</div>
-			<div class="column middle"><div id="subpage_2_1" style="width:100%; display:inline-block; background-color:#434343"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 1.5em; color: #f5d34b">contact</pre>
+		<div class="column side">
+		</div>
+			<div class="column middle"><div id="subpage_2_1" style="padding: 1em; width: 100%; display: inline-block; background-color:#434343"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 1.5em; color: #f5d34b">contact</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">YouTube: <a href="https://youtube.com/c/hilzevonck">click here</a></pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
 </div>
@@ -565,6 +542,32 @@ class ResponsiveDropdownMenu : public Menu
 		<script type="text/javascript" src="js/before-after.min.js"></script>
 		<script type="text/javascript" src="js/calculate-age.js"></script>
 	<script>
+
+	function collapsableToggle(idx)
+	{
+		var x = document.getElementById('collapsable_' + idx);
+		
+		if(x.classList.contains('collapsable-hidden')) {
+			x.classList.remove('collapsable-hidden');
+			document.getElementById('collapsable_banner_' + idx).classList.remove('collapsable-grayscale');
+		}
+		else {
+			x.classList.add('collapsable-hidden');
+			document.getElementById('collapsable_banner_' + idx).classList.add('collapsable-grayscale');
+		}
+	}
+
+
+	setTimeout(function() {
+		var idx = 0;
+		while(document.getElementById('collapsable_' + idx))
+		{
+			var x = document.getElementById('collapsable_' + idx);
+			x.classList.add('collapsable-hidden');
+			idx++;
+		}
+	}, 1);
+	
 
 	function videoResize() {
 		var x = document.getElementsByClassName("video-player");
@@ -731,7 +734,7 @@ function getUrlParams(url) {
 
 
 	var navbar_offset = $('#topnav').offset().top;
-
+	
 	function scrollNavbar() {
 		if ($(this).scrollTop() > navbar_offset) {
 			$('#topnav').css("left", ($(document).width() - $('#topnav').width()) * 0.5);
@@ -754,16 +757,11 @@ function getUrlParams(url) {
 				$(x[i]).css('margin-top', '0px');
 			}		
 		}
-		if(document.getElementById("topnav").classList.contains("responsive")) {
-			resizeNavbar();
-		}
 	}
 
 	window.addEventListener("scroll", scrollNavbar);
-
+	
 	function resizeNavbar() {
-		document.getElementsByClassName("navbar-icon")[0].classList.toggle('navbar-icon-change');
-		
 		var x = document.getElementById("topnav");
 		if (x.classList.contains("responsive")) {
 			var v = document.getElementsByClassName("page");
@@ -771,7 +769,7 @@ function getUrlParams(url) {
 			for (i = 0; i < v.length; i++) {
 				$(v[i]).css('margin-top', '0px');
 			}
-
+			
 		    x.classList.remove("responsive");
 		} else {
 			if ($(this).scrollTop() > navbar_offset) {
@@ -783,27 +781,6 @@ function getUrlParams(url) {
 			}
 
 		    x.classList.add("responsive");
-		}
-
-		var all_dropdown_contents = document.getElementsByClassName("dropdown-content");
-		var i;
-		for (i = 0; i < all_dropdown_contents.length; i++) {
-			if (all_dropdown_contents[i].className === "dropdown-content") {
-				all_dropdown_contents[i].className += " small-content";
-				
-				all_dropdown_contents[i].style.visibility = "visible";
-				all_dropdown_contents[i].style.opacity = "1.0";
-				all_dropdown_contents[i].style.position = "relative";
-				all_dropdown_contents[i].style.paddingLeft = "50px";
-
-			} else {
-				all_dropdown_contents[i].className = "dropdown-content";
-				all_dropdown_contents[i].style.visibility = "hidden";
-				all_dropdown_contents[i].style.opacity = "0.0";
-				all_dropdown_contents[i].style.position = "absolute";
-				all_dropdown_contents[i].style.paddingLeft = "0px";
-				all_dropdown_contents[i].removeAttribute("style");
-			}
 		}
 	}
 
