@@ -202,16 +202,14 @@
 	.collapsable-button
 	{
 		position: absolute;
-		right: 0;
+		right: 1em;
 		top: 0;
 		font-size: 1em;
 		
-		-moz-transform:rotate(-90deg);
-		-ms-transform:rotate(-90deg);
-		-o-transform:rotate(-90deg);
-		-webkit-transform:rotate(-90deg);
-		transform-origin: bottom right;
-		width:
+		width: 1px;
+		height: 100%;
+		word-wrap: break-word;
+		pointer-events: none;
 	}
 
 	.collapsable-title
@@ -414,11 +412,11 @@ body {margin:0;}
 
 	<div class="collapsable-container">
 		<div style="position: relative;">
-			<img class="collapsable-grayscale collapsable-banner" id="collapsable_banner_0" src="images/banner_nebelkampf.png"></img>
-			<button class="collapsable-button" onclick="collapsableToggle(0);">
+			<img class="collapsable-grayscale collapsable-banner" onclick="collapsableToggle(0);" id="collapsable_banner_0" src="images/banner_nebelkampf.png"></img>
+			<span class="collapsable-button">
 			Expand
-			</button>
-			<span class="collapsable-title">Nebelkamp</span>
+			</span>
+			<span class="collapsable-title">Nebelkampf</span>
 		</div>
 		<div id="collapsable_0" style="padding:1em;">
 
@@ -429,10 +427,10 @@ body {margin:0;}
 
 	<div class="collapsable-container">
 		<div style="position: relative;">
-			<img class="collapsable-grayscale collapsable-banner" id="collapsable_banner_1" src="images/banner_sulphur.png"></img>
-			<button class="collapsable-button" onclick="collapsableToggle(1);">
+			<img class="collapsable-grayscale collapsable-banner" onclick="collapsableToggle(1);" id="collapsable_banner_1" src="images/banner_sulphur.png"></img>
+			<span class="collapsable-button">
 			Expand
-			</button>
+			</span>
 			<span class="collapsable-title">Project Sulphur</span>
 		</div>
 		<div id="collapsable_1" style="padding:1em;">
@@ -557,6 +555,23 @@ class ResponsiveDropdownMenu : public Menu
 		}
 	}
 
+	function resizeTitles() {
+		var all_titles = document.getElementsByClassName("collapsable-title");
+		var all_banners = document.getElementsByClassName("collapsable-banner");
+		var all_buttons = document.getElementsByClassName("collapsable-button");
+		var i;
+		for (i = 0; i < all_titles.length; i++) {
+			all_titles[i].style.fontSize = "1em";
+			var w = $(all_banners[i]).width() / $(all_titles[i]).width();
+			all_titles[i].style.fontSize = w * 0.5 + "em";
+			all_buttons[i].style.wordWrap = "none";
+			w = $(all_banners[i]).height() / $(all_buttons[i]).height();
+			all_buttons[i].style.fontSize = w + "em";
+			all_buttons[i].style.wordWrap = "break-word";
+		}
+	}
+
+	resizeTitles();
 
 	setTimeout(function() {
 		var idx = 0;
