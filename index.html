@@ -181,8 +181,8 @@
 
 	.collapsable-grayscale
 	{
-		-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-		filter: grayscale(100%);
+		-webkit-filter: grayscale(75%); /* Safari 6.0 - 9.0 */
+		filter: grayscale(75%);
 	}
 	.collapsable-grayscale:hover {
 		-webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
@@ -199,17 +199,30 @@
 		transition: filter .25s ease-in-out;
 	}
 
-	.collapsable-button
-	{
+	.collapsable-button {
 		position: absolute;
-		right: 1em;
-		top: 0;
 		font-size: 1em;
-		
-		width: 1px;
-		height: 100%;
-		word-wrap: break-word;
+		color: white;
+		font-family:arial;
+		padding:0.2em;
+		right:-2em;
+
 		pointer-events: none;
+		position: absolute;
+		background:rgba(0,0,0,0.5);
+		-webkit-transform: rotate(270deg) translateX(-100%);
+				transform: rotate(270deg) translateX(-100%);
+	}
+
+	.collapsable-button-open {
+		-webkit-transform-origin: -45% -150%;
+				transform-origin: -45% -150%;
+	}
+
+	.collapsable-button-close {
+		-webkit-transform-origin: -50% -175%;
+				transform-origin: -50% -175%;
+		display:none;
 	}
 
 	.collapsable-title
@@ -411,10 +424,13 @@ body {margin:0;}
 </div><div id="subpage_0_2" style="padding: 1em; width: 100%; display: inline-block; background-color:#333333"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Projects.</pre>
 
 	<div class="collapsable-container">
-		<div style="position: relative;">
+		<div style="position: relative; overflow:hidden;">
 			<img class="collapsable-grayscale collapsable-banner" onclick="collapsableToggle(0);" id="collapsable_banner_0" src="images/banner_nebelkampf.png"></img>
-			<span class="collapsable-button">
-			Expand
+			<span class="collapsable-button collapsable-button-open">
+			EXPAND
+			</span>
+			<span class="collapsable-button collapsable-button-close">
+			COLLAPSE
 			</span>
 			<span class="collapsable-title">Nebelkampf</span>
 		</div>
@@ -426,10 +442,13 @@ body {margin:0;}
 </div></div>
 
 	<div class="collapsable-container">
-		<div style="position: relative;">
+		<div style="position: relative; overflow:hidden;">
 			<img class="collapsable-grayscale collapsable-banner" onclick="collapsableToggle(1);" id="collapsable_banner_1" src="images/banner_sulphur.png"></img>
-			<span class="collapsable-button">
-			Expand
+			<span class="collapsable-button collapsable-button-open">
+			EXPAND
+			</span>
+			<span class="collapsable-button collapsable-button-close">
+			COLLAPSE
 			</span>
 			<span class="collapsable-title">Project Sulphur</span>
 		</div>
@@ -548,30 +567,38 @@ class ResponsiveDropdownMenu : public Menu
 		if(x.classList.contains('collapsable-hidden')) {
 			x.classList.remove('collapsable-hidden');
 			document.getElementById('collapsable_banner_' + idx).classList.remove('collapsable-grayscale');
+			document.getElementsByClassName("collapsable-button-open")[idx].style.display = "none";
+			document.getElementsByClassName("collapsable-button-close")[idx].style.display = "inline-block";
 		}
 		else {
 			x.classList.add('collapsable-hidden');
 			document.getElementById('collapsable_banner_' + idx).classList.add('collapsable-grayscale');
+			document.getElementsByClassName("collapsable-button-open")[idx].style.display = "inline-block";
+			document.getElementsByClassName("collapsable-button-close")[idx].style.display = "none";
 		}
 	}
 
 	function resizeTitles() {
 		var all_titles = document.getElementsByClassName("collapsable-title");
 		var all_banners = document.getElementsByClassName("collapsable-banner");
-		var all_buttons = document.getElementsByClassName("collapsable-button");
+		var all_buttons_open = document.getElementsByClassName("collapsable-button-open");
+		var all_buttons_close = document.getElementsByClassName("collapsable-button-close");
 		var i;
 		for (i = 0; i < all_titles.length; i++) {
 			all_titles[i].style.fontSize = "1em";
 			var w = $(all_banners[i]).width() / $(all_titles[i]).width();
 			all_titles[i].style.fontSize = w * 0.5 + "em";
-			all_buttons[i].style.wordWrap = "none";
-			w = $(all_banners[i]).height() / $(all_buttons[i]).height();
-			all_buttons[i].style.fontSize = w + "em";
-			all_buttons[i].style.wordWrap = "break-word";
+			all_buttons_open[i].style.fontSize = "1em";
+			w = $(all_banners[i]).height() / $(all_buttons_open[i]).width();
+			all_buttons_open[i].style.fontSize = w + "em";
+			all_buttons_close[i].style.fontSize = "1em";
+			w = $(all_banners[i]).height() / $(all_buttons_close[i]).width();
+			all_buttons_close[i].style.fontSize = w + "em";
 		}
+		console.log("resizing titles");
 	}
 
-	resizeTitles();
+	window.addEventListener('resize', resizeTitles);
 
 	setTimeout(function() {
 		var idx = 0;
