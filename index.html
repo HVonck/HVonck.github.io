@@ -438,7 +438,7 @@ body {margin:0;}
 
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">This project was called Nebelkampf. And I have done post processing for this project.</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">  </pre>
-<div style="position:relative; left:5.000000%; width:90.000000%""><div class="ba-slider"><img src="images/all_enabled.png" alt="Without Post-Processing">	<div class="resize">		<img src="images/all_disabled.png" alt="With Post-Processing">	</div>	<span class="handle"></span></div><pre style="left:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">Without Post-Processing</pre><pre style="right:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">With Post-Processing</pre></div>
+<div style="position:relative; left:5.000000%; width:90.000000%""><div class="ba-slider" id="ba_slider_0"><img src="images/all_enabled.png" alt="Without Post-Processing">	<div class="resize">		<img src="images/all_disabled.png" alt="With Post-Processing">	</div>	<span class="handle"></span></div><pre style="left:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">Without Post-Processing</pre><pre style="right:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">With Post-Processing</pre></div>
 </div></div>
 
 	<div class="collapsable-container">
@@ -516,7 +516,7 @@ class ResponsiveDropdownMenu : public Menu
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">This here is an example of the ::comparator() function:</pre>
-<div style="position:relative; left:5.000000%; width:90.000000%""><div class="ba-slider"><img src="images/all_enabled.png" alt="Without Post-Processing">	<div class="resize">		<img src="images/all_disabled.png" alt="With Post-Processing">	</div>	<span class="handle"></span></div><pre style="left:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">Without Post-Processing</pre><pre style="right:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">With Post-Processing</pre></div>
+<div style="position:relative; left:5.000000%; width:90.000000%""><div class="ba-slider" id="ba_slider_1"><img src="images/all_enabled.png" alt="Without Post-Processing">	<div class="resize">		<img src="images/all_disabled.png" alt="With Post-Processing">	</div>	<span class="handle"></span></div><pre style="left:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">Without Post-Processing</pre><pre style="right:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">With Post-Processing</pre></div>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
 </div><div id="subpage_1_2" style="padding: 1em; width: 100%; display: inline-block; background-color:#333333"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Videos.</pre>
@@ -560,6 +560,54 @@ class ResponsiveDropdownMenu : public Menu
 		<script type="text/javascript" src="js/calculate-age.js"></script>
 	<script>
 
+	function videoResize() {
+		var x = document.getElementsByClassName("video-player");
+		var i;
+		for (i = 0; i < x.length; i++) {
+			$(x[i]).height($(x[i]).width() * 0.5625);
+		}
+		console.log("resizing videos");
+	}
+
+	window.addEventListener("resize", videoResize);
+	videoResize();
+
+	hljs.initHighlightingOnLoad();
+	
+	function codeExpand(idx, height)
+	{
+		var p = document.getElementById("code-" + idx);
+		var x = p.children[0];
+		if (x.style.maxHeight === height) {
+			x.style.maxHeight = "";
+			x.style.maxHeight = x.offsetHeight;
+			document.getElementById("code-button-" + idx).innerText = "Collapse ";
+		} else {
+			x.style.maxHeight = height;
+			document.getElementById("code-button-" + idx).innerText = "Expand ";
+		}
+	}
+	document.getElementById('image_modal').onclick = function() {
+	    document.getElementById('image_modal').style.display = "none";
+	}
+
+	function modalPopup(img) {
+		document.getElementById('image_modal').style.display = "block";
+		document.getElementById('image_modal_img').src = img.src;
+		document.getElementById('image_modal_caption').innerHTML = img.alt;
+	}
+	function beforeAfterResize() {
+		var idx = 0;
+		var x = document.getElementById("ba_slider_" + idx);
+		while(x)
+		{
+			x = document.getElementById("ba_slider_" + idx);
+			$(x).beforeAfter();
+			idx++;	
+		}
+	}
+	window.addEventListener('resize', beforeAfterResize);
+	
 	function collapsableToggle(idx)
 	{
 		var x = document.getElementById('collapsable_' + idx);
@@ -598,9 +646,16 @@ class ResponsiveDropdownMenu : public Menu
 		console.log("resizing titles");
 	}
 
-	window.addEventListener('resize', resizeTitles);
+	function openCloseCollapse() {
 
-	setTimeout(function() {
+		var idx = 0;
+		while(document.getElementById('collapsable_' + idx))
+		{
+			var x = document.getElementById('collapsable_' + idx);
+			x.classList.remove('collapsable-hidden');
+			idx++;
+		}
+		setTimeout(function() {
 		var idx = 0;
 		while(document.getElementById('collapsable_' + idx))
 		{
@@ -608,47 +663,12 @@ class ResponsiveDropdownMenu : public Menu
 			x.classList.add('collapsable-hidden');
 			idx++;
 		}
-	}, 1);
-	
-
-	function videoResize() {
-		var x = document.getElementsByClassName("video-player");
-		var i;
-		for (i = 0; i < x.length; i++) {
-			$(x[i]).height($(x[i]).width() * 0.5625);
-		}
-		console.log("resizing videos");
+	}, 1)
 	}
 
-	window.addEventListener("resize", videoResize);
-	videoResize();
-
-	hljs.initHighlightingOnLoad();
-	
-	function codeExpand(idx, height)
-	{
-		var p = document.getElementById("code-" + idx);
-		var x = p.children[0];
-		if (x.style.maxHeight === height) {
-			x.style.maxHeight = "";
-			x.style.maxHeight = x.offsetHeight;
-			document.getElementById("code-button-" + idx).innerText = "Collapse ";
-		} else {
-			x.style.maxHeight = height;
-			document.getElementById("code-button-" + idx).innerText = "Expand ";
-		}
-	}
-	document.getElementById('image_modal').onclick = function() {
-	    document.getElementById('image_modal').style.display = "none";
-	}
-
-	function modalPopup(img) {
-		document.getElementById('image_modal').style.display = "block";
-		document.getElementById('image_modal_img').src = img.src;
-		document.getElementById('image_modal_caption').innerHTML = img.alt;
-	}
-	$('.ba-slider').beforeAfter();
-	function onChangePage(idx) {
+	window.addEventListener('resize', resizeTitles);
+	window.addEventListener('resize', openCloseCollapse);
+function onChangePage(idx) {
 	var vidx = idx.split("_");
 	var page = vidx[0];
 	var subpage = vidx[1];
