@@ -11,6 +11,85 @@
 				font-family: avenir;
 				src: url(fonts/AvenirLTStd-Book.otf);
 			}
+
+	
+	.collapsable-container
+	{
+		background: #ddd;
+		border: 0.25em solid black;
+		border-radius: 1em;
+		float: left;
+		position: relative;
+		width: 100%;
+		overflow: hidden;
+	}
+
+	.collapsable-hidden
+	{
+		display:none;
+	}
+
+	.collapsable-grayscale
+	{
+		-webkit-filter: grayscale(75%); /* Safari 6.0 - 9.0 */
+		filter: grayscale(75%);
+	}
+	.collapsable-grayscale:hover {
+		-webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+		filter: grayscale(0%);
+	}
+
+	.collapsable-banner
+	{
+		-webkit-background-clip: padding-box;
+		-moz-background-clip:    padding; 
+		background-clip:         padding-box;
+		width: 100%;
+		display: block;
+		transition: filter .25s ease-in-out;
+	}
+
+	.collapsable-button {
+		position: absolute;
+		font-size: 1em;
+		color: white;
+		font-family:arial;
+		padding:0.2em;
+		right:-2em;
+
+		pointer-events: none;
+		position: absolute;
+		background:rgba(0,0,0,0.5);
+		-webkit-transform: rotate(270deg) translateX(-100%);
+				transform: rotate(270deg) translateX(-100%);
+	}
+
+	.collapsable-button-open {
+		-webkit-transform-origin: -45% -150%;
+				transform-origin: -45% -150%;
+	}
+
+	.collapsable-button-close {
+		-webkit-transform-origin: -50% -175%;
+				transform-origin: -50% -175%;
+		display:none;
+	}
+
+	.collapsable-title
+	{
+		font-size: 2em;
+		color: #f1c40e;
+		font-family:avenir;
+
+		-webkit-text-stroke: 1.0px #000000;
+		
+		position: absolute;
+		top: 50%;
+		left: 50%; 
+		text-align: center;
+		transform: translateX(-50%) translateY(-50%);
+		pointer-events: none;
+	}
 .code-resize-animation {
 		transition: all .5s linear;
 		width: 100%;
@@ -96,7 +175,7 @@
 		top: 0;
 		width: 100%; /* Full width */
 		height: 100%; /* Full height */
-		overflow: auto; /* Enable scroll if needed */
+		overflow: hidden; /* Enable scroll if needed */
 		cursor: pointer;
 	}
 
@@ -161,86 +240,7 @@
 		.image-modal-content {
 			width: 100%;
 		}
-	}
-	
-	.collapsable-container
-	{
-		background: #ddd;
-		border: 0.25em solid black;
-		border-radius: 1em;
-		float: left;
-		position: relative;
-		width: 100%;
-		overflow: hidden;
-	}
-
-	.collapsable-hidden
-	{
-		display:none;
-	}
-
-	.collapsable-grayscale
-	{
-		-webkit-filter: grayscale(75%); /* Safari 6.0 - 9.0 */
-		filter: grayscale(75%);
-	}
-	.collapsable-grayscale:hover {
-		-webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
-		filter: grayscale(0%);
-	}
-
-	.collapsable-banner
-	{
-		-webkit-background-clip: padding-box;
-		-moz-background-clip:    padding; 
-		background-clip:         padding-box;
-		width: 100%;
-		display: block;
-		transition: filter .25s ease-in-out;
-	}
-
-	.collapsable-button {
-		position: absolute;
-		font-size: 1em;
-		color: white;
-		font-family:arial;
-		padding:0.2em;
-		right:-2em;
-
-		pointer-events: none;
-		position: absolute;
-		background:rgba(0,0,0,0.5);
-		-webkit-transform: rotate(270deg) translateX(-100%);
-				transform: rotate(270deg) translateX(-100%);
-	}
-
-	.collapsable-button-open {
-		-webkit-transform-origin: -45% -150%;
-				transform-origin: -45% -150%;
-	}
-
-	.collapsable-button-close {
-		-webkit-transform-origin: -50% -175%;
-				transform-origin: -50% -175%;
-		display:none;
-	}
-
-	.collapsable-title
-	{
-		font-size: 2em;
-		color: #f1c40e;
-		font-family:avenir;
-
-		-webkit-text-stroke: 1.0px #000000;
-		
-		position: absolute;
-		top: 50%;
-		left: 50%; 
-		text-align: center;
-		transform: translateX(-50%) translateY(-50%);
-		pointer-events: none;
-	}
-.header {
+	}.header {
 		background-color: #f5d34b;
 		padding: 20px;
 		text-align: center;
@@ -360,6 +360,50 @@ body {margin:0;}
 		    width: 100%;
 		}
 	}
+	.portfolio-table {
+		align:top; 
+		border-collapse: collapse; 
+		border-style: hidden;
+		padding: 0.5em; 
+		width: 100%; 
+		border: 1px solid #ddd;
+		max-width:20em;
+		margin: auto;
+		font-family: avenir; 
+		color: white;
+		font-size: 1em;
+	}
+
+	.portfolio-table td {
+		border: 1px solid black;
+		padding: 0.25em;
+	}
+
+	.portfolio-header {
+		text-align:center; 
+		font-weight:bold;
+		font-family: avenir;
+		color: white;
+		font-size: 2em;
+		margin:0px;
+		width: 100%;
+	}
+
+	.portfolio-table tr:nth-child(even){background-color: #434343;}
+	.portfolio-table tr:nth-child(odd){background-color: #333333;}
+
+	.portfolio-table tr:hover {background-color: #232323;}
+		
+	.portfolio-table td {
+		width:50%;
+	}
+
+	@media screen and (max-width: 600px) {
+		.portfolio-table {
+			max-width:100%;
+		}
+	}
+
 .footer {
 		background-color: #f5d34b;
 		padding: 20px;
@@ -381,7 +425,7 @@ body {margin:0;}
 	</head>
 	<body style="background-color:#111111">
 
-	<div id="image_modal" class="image-modal">
+	<div id="image_modal" class="image-modal" data-scale="1.6">
 		<img class="image-modal-content" id="image_modal_img">
 		<div id="image_modal_caption"></div>
 		<div class="image-modal-background"></div>
@@ -413,15 +457,14 @@ body {margin:0;}
 	</div><div class="page" id="page_0">
 
 	<div class="row">
-		<div class="column side">
-		</div>
-			<div class="column middle"><div id="subpage_0_1" style="padding: 1em; width: 100%; display: inline-block; background-color:#434343"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Introduction.</pre>
+		<div class="column side"><table class="portfolio-table"><tr><td colspan="2"><center><img width="100%" style="position:relative; margin: auto; max-width:20em;" src="https://scontent-ams3-1.xx.fbcdn.net/v/t1.0-9/10418941_1557268777829202_1468980730405045962_n.jpg?oh=864cb34a392ac1670cebb566887b89de&oe=5A91F6F1"></img></center></td></tr><tr><td colspan="2"><pre class="portfolio-header">Hilze Vonck</pre></td></tr><tr><td>Age</td><td><span class="calculate-age">Undefined</span> years old</td></tr><tr><td>Education</td><td>NTHV Breda (IGAD)</td></tr><tr><td>Engines</td><td>Unity<br>UE4</td></tr><tr><td>Graphics API's</td><td>OpenGL<br>DirectX 11<br>GNM/GNMX</td></tr><tr><td>Languages</td><td>Proficient in Dutch<br>Proficient in English</td></tr><tr><td>Programming Languages</td><td>C++<br>C#<br>HTML</td></tr><tr><td>Shader Languages</td><td>HLSL<br>GLSL<br>PSSL</td></tr><tr><td>Version Control Systems</td><td>Perforce<br>GIT<br>Turtoise SVN</td></tr></table>		</div>
+			<div class="column middle"><div id="subpage_0_1" style="padding: 1em; width:100%; display:inline-block; background-color:#434343"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Introduction.</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">Hello.</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">My name is Hilze Vonck.</pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">I am a third year programming student at NHTV Breda [IGAD].</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">I am a third year programming student at NHTV Breda (IGAD).</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">I enjoy graphics programming and PS4 programming.</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
-</div><div id="subpage_0_2" style="padding: 1em; width: 100%; display: inline-block; background-color:#333333"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Projects.</pre>
+</div><div id="subpage_0_2" style="padding: 1em; width:100%; display:inline-block; background-color:#333333"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Projects.</pre>
 
 	<div class="collapsable-container">
 		<div style="position: relative; overflow:hidden;">
@@ -443,7 +486,33 @@ body {margin:0;}
 
 	<div class="collapsable-container">
 		<div style="position: relative; overflow:hidden;">
-			<img class="collapsable-grayscale collapsable-banner" onclick="collapsableToggle(1);" id="collapsable_banner_1" src="images/banner_sulphur.png"></img>
+			<img class="collapsable-grayscale collapsable-banner" onclick="collapsableToggle(1);" id="collapsable_banner_1" src="images/banner_dev_demo.png"></img>
+			<span class="collapsable-button collapsable-button-open">
+			EXPAND
+			</span>
+			<span class="collapsable-button collapsable-button-close">
+			COLLAPSE
+			</span>
+			<span class="collapsable-title">Dev Demo</span>
+		</div>
+		<div id="collapsable_1" style="padding:1em;">
+
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">I worked on this project during the second year of college. This was the first time that I did graphics programming.</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">  </pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">Effects:</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">-Shadow mapping.</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">-Physically Based Rendering (PBR).</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">-Screen Space Ambient Occlusion (SSAO).</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">-Chromatic Aberration.</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">  </pre>
+<div style="position:relative; left:5.000000%; width:90.000000%""><div class="ba-slider" id="ba_slider_1"><img src="images/dev_demo_light_night.png" alt="Day">	<div class="resize">		<img src="images/dev_demo_light_day.png" alt="Night">	</div>	<span class="handle"></span></div><pre style="left:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">Day</pre><pre style="right:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">Night</pre></div>
+<img class="image-item"onclick="modalPopup(this)"alt="The environment during the day."style="left:5.000000%" width="90.000000%" src="images/dev_demo_all_enabled.png"></img>
+<video controls frameborder="0" class="video-player"style="position:relative; background-color:black; height:auto; width:90.000000%; left:5.000000%"src="videos/dev_demo.mp4"></video>
+</div></div>
+
+	<div class="collapsable-container">
+		<div style="position: relative; overflow:hidden;">
+			<img class="collapsable-grayscale collapsable-banner" onclick="collapsableToggle(2);" id="collapsable_banner_2" src="images/banner_sulphur.png"></img>
 			<span class="collapsable-button collapsable-button-open">
 			EXPAND
 			</span>
@@ -452,7 +521,7 @@ body {margin:0;}
 			</span>
 			<span class="collapsable-title">Project Sulphur</span>
 		</div>
-		<div id="collapsable_1" style="padding:1em;">
+		<div id="collapsable_2" style="padding:1em;">
 
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">This project is called Project Sulphur. We are creating a custom engine and I am going to do all of the PS4 programming for this project.</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">  </pre>
@@ -467,9 +536,8 @@ body {margin:0;}
 <div class="page" id="page_1">
 
 	<div class="row">
-		<div class="column side">
-		</div>
-			<div class="column middle"><div id="subpage_1_1" style="padding: 1em; width: 100%; display: inline-block; background-color:#434343"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Examples.</pre>
+		<div class="column side"><table class="portfolio-table"><tr><td colspan="2"><center><img width="100%" style="position:relative; margin: auto; max-width:20em;" src=""></img></center></td></tr><tr><td colspan="2"><pre class="portfolio-header"></pre></td></tr><tr><td>Age</td><td><span class="calculate-age">Undefined</span> years old</td></tr><tr><td>Education</td><td>NTHV Breda (IGAD)</td></tr><tr><td>Engines</td><td>Unity<br>UE4</td></tr><tr><td>Graphics API's</td><td>OpenGL<br>DirectX 11<br>GNM/GNMX</td></tr><tr><td>Languages</td><td>Proficient in Dutch<br>Proficient in English</td></tr><tr><td>Programming Languages</td><td>C++<br>C#<br>HTML</td></tr><tr><td>Shader Languages</td><td>HLSL<br>GLSL<br>PSSL</td></tr><tr><td>Version Control Systems</td><td>Perforce<br>GIT<br>Turtoise SVN</td></tr></table>		</div>
+			<div class="column middle"><div id="subpage_1_1" style="padding: 1em; width:100%; display:inline-block; background-color:#434343"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Examples.</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">This here is an example of the ::code() function:</pre>
 <pre style="position:relative; left:5%; width: 90%" id="code-0"><code style="padding: 0em; height: auto; max-height:10em" class="code-resize-animation c++">#pragma once
 #include < fstream >
@@ -516,10 +584,10 @@ class ResponsiveDropdownMenu : public Menu
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">This here is an example of the ::comparator() function:</pre>
-<div style="position:relative; left:5.000000%; width:90.000000%""><div class="ba-slider" id="ba_slider_1"><img src="images/all_enabled.png" alt="Without Post-Processing">	<div class="resize">		<img src="images/all_disabled.png" alt="With Post-Processing">	</div>	<span class="handle"></span></div><pre style="left:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">Without Post-Processing</pre><pre style="right:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">With Post-Processing</pre></div>
+<div style="position:relative; left:5.000000%; width:90.000000%""><div class="ba-slider" id="ba_slider_2"><img src="images/all_enabled.png" alt="Without Post-Processing">	<div class="resize">		<img src="images/all_disabled.png" alt="With Post-Processing">	</div>	<span class="handle"></span></div><pre style="left:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">Without Post-Processing</pre><pre style="right:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">With Post-Processing</pre></div>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
-</div><div id="subpage_1_2" style="padding: 1em; width: 100%; display: inline-block; background-color:#333333"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Videos.</pre>
+</div><div id="subpage_1_2" style="padding: 1em; width:100%; display:inline-block; background-color:#333333"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Videos.</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">This here is an example of the ::video() function:</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
 <video controls frameborder="0" class="video-player"style="position:relative; background-color:black; height:auto; width:45.000000%; left:5.000000%"src="videos/yee.mp4"></video><iframe controls frameborder="0" class="video-player"style="position:relative; background-color:black; height:auto; width:45.000000%; left:5.000000%"src="https://www.youtube.com/embed/ZZ5LpwO-An4"></iframe>
@@ -532,9 +600,8 @@ class ResponsiveDropdownMenu : public Menu
 <div class="page" id="page_2">
 
 	<div class="row">
-		<div class="column side">
-		</div>
-			<div class="column middle"><div id="subpage_2_1" style="padding: 1em; width: 100%; display: inline-block; background-color:#434343"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 1.5em; color: #f5d34b">contact</pre>
+		<div class="column side"><table class="portfolio-table"><tr><td colspan="2"><center><img width="100%" style="position:relative; margin: auto; max-width:20em;" src=""></img></center></td></tr><tr><td colspan="2"><pre class="portfolio-header"></pre></td></tr><tr><td>Age</td><td><span class="calculate-age">Undefined</span> years old</td></tr><tr><td>Education</td><td>NTHV Breda (IGAD)</td></tr><tr><td>Engines</td><td>Unity<br>UE4</td></tr><tr><td>Graphics API's</td><td>OpenGL<br>DirectX 11<br>GNM/GNMX</td></tr><tr><td>Languages</td><td>Proficient in Dutch<br>Proficient in English</td></tr><tr><td>Programming Languages</td><td>C++<br>C#<br>HTML</td></tr><tr><td>Shader Languages</td><td>HLSL<br>GLSL<br>PSSL</td></tr><tr><td>Version Control Systems</td><td>Perforce<br>GIT<br>Turtoise SVN</td></tr></table>		</div>
+			<div class="column middle"><div id="subpage_2_1" style="padding: 1em; width:100%; display:inline-block; background-color:#434343"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 1.5em; color: #f5d34b">contact</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">YouTube: <a href="https://youtube.com/c/hilzevonck">click here</a></pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
 </div>
@@ -560,54 +627,6 @@ class ResponsiveDropdownMenu : public Menu
 		<script type="text/javascript" src="js/calculate-age.js"></script>
 	<script>
 
-	function videoResize() {
-		var x = document.getElementsByClassName("video-player");
-		var i;
-		for (i = 0; i < x.length; i++) {
-			$(x[i]).height($(x[i]).width() * 0.5625);
-		}
-		console.log("resizing videos");
-	}
-
-	window.addEventListener("resize", videoResize);
-	videoResize();
-
-	hljs.initHighlightingOnLoad();
-	
-	function codeExpand(idx, height)
-	{
-		var p = document.getElementById("code-" + idx);
-		var x = p.children[0];
-		if (x.style.maxHeight === height) {
-			x.style.maxHeight = "";
-			x.style.maxHeight = x.offsetHeight;
-			document.getElementById("code-button-" + idx).innerText = "Collapse ";
-		} else {
-			x.style.maxHeight = height;
-			document.getElementById("code-button-" + idx).innerText = "Expand ";
-		}
-	}
-	document.getElementById('image_modal').onclick = function() {
-	    document.getElementById('image_modal').style.display = "none";
-	}
-
-	function modalPopup(img) {
-		document.getElementById('image_modal').style.display = "block";
-		document.getElementById('image_modal_img').src = img.src;
-		document.getElementById('image_modal_caption').innerHTML = img.alt;
-	}
-	function beforeAfterResize() {
-		var idx = 0;
-		var x = document.getElementById("ba_slider_" + idx);
-		while(x)
-		{
-			x = document.getElementById("ba_slider_" + idx);
-			$(x).beforeAfter();
-			idx++;	
-		}
-	}
-	window.addEventListener('resize', beforeAfterResize);
-	
 	function collapsableToggle(idx)
 	{
 		var x = document.getElementById('collapsable_' + idx);
@@ -666,9 +685,59 @@ class ResponsiveDropdownMenu : public Menu
 	}, 1)
 	}
 
-	window.addEventListener('resize', resizeTitles);
-	window.addEventListener('resize', openCloseCollapse);
-function onChangePage(idx) {
+	window.addEventListener('on_resize', resizeTitles);
+	window.addEventListener('changePage', openCloseCollapse);
+
+	function videoResize() {
+		var x = document.getElementsByClassName("video-player");
+		var i;
+		for (i = 0; i < x.length; i++) {
+			$(x[i]).height($(x[i]).width() * 0.5625);
+		}
+		console.log("resizing videos");
+	}
+
+	window.addEventListener("on_resize", videoResize);
+	videoResize();
+
+	hljs.initHighlightingOnLoad();
+	
+	function codeExpand(idx, height)
+	{
+		var p = document.getElementById("code-" + idx);
+		var x = p.children[0];
+		if (x.style.maxHeight === height) {
+			x.style.maxHeight = "";
+			x.style.maxHeight = x.offsetHeight;
+			document.getElementById("code-button-" + idx).innerText = "Collapse ";
+		} else {
+			x.style.maxHeight = height;
+			document.getElementById("code-button-" + idx).innerText = "Expand ";
+		}
+	}
+	document.getElementById('image_modal').onclick = function() {
+	    document.getElementById('image_modal').style.display = "none";
+	}
+
+	function modalPopup(img) {
+		document.getElementById('image_modal').style.display = "block";
+		console.log(img.src);
+		document.getElementById('image_modal_img').src = img.src;
+		document.getElementById('image_modal_caption').innerHTML = img.alt;
+	}
+
+	function beforeAfterResize() {
+		var idx = 0;
+		var x = document.getElementById("ba_slider_" + idx);
+		while(x)
+		{
+			x = document.getElementById("ba_slider_" + idx);
+			$(x).beforeAfter();
+			idx++;	
+		}
+	}
+	window.addEventListener('changePage', beforeAfterResize);
+	function onChangePage(idx) {
 	var vidx = idx.split("_");
 	var page = vidx[0];
 	var subpage = vidx[1];
@@ -697,7 +766,18 @@ function onChangePage(idx) {
 	}
 	setUrlParam("page", idx);
 
-	window.dispatchEvent(new Event('resize'));
+	var cachedWidth = $(window).width();
+  $(window).resize(function(){
+		var newWidth = $(window).width();
+    if(newWidth !== cachedWidth){
+			//DO RESIZE HERE
+      cachedWidth = newWidth;
+			window.dispatchEvent(new Event('on_resize'));
+    }
+  });
+
+	window.dispatchEvent(new Event('changePage'));
+	window.dispatchEvent(new Event('on_resize'));
 }
 function setUrlParam(key, value) {
 
