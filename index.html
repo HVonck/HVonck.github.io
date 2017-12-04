@@ -90,157 +90,7 @@
 		transform: translateX(-50%) translateY(-50%);
 		pointer-events: none;
 	}
-.code-resize-animation {
-		transition: all .5s linear;
-		width: 100%;
-	}
-
-	.code-button {
-	  display: inline-block;
-	  border-radius: 4px;
-	  background-color: #f1c40e;
-	  border: none;
-	  color: #2c2c2c;
-	  text-align: center;
-	  font-size: 20px;
-	  padding-y: 20px;
-	  width: 100%;
-	  transition: all 0.5s;
-	  cursor: pointer;
-	  margin: 0px;
-	}
-
-	pre {
-		white-space: pre-wrap;       /* css-3 */
-		white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-		white-space: -pre-wrap;      /* Opera 4-6 */
-		white-space: -o-pre-wrap;    /* Opera 7 */
-		word-wrap: break-word;       /* Internet Explorer 5.5+ */
-	}
-
-	.text {
-		margin: 0px;
-		overflow: wrap;
-	}
-
-	.code-button span {
-	  cursor: pointer;
-	  display: inline-block;
-	  position: relative;
-	  transition: 0.5s;
-	}
-
-	.code-button span:after {
-	  content: '\00bb';
-	  position: absolute;
-	  opacity: 0;
-	  top: 0;
-	  right: -20px;
-	  transition: 0.5s;
-	}
-
-	.code-button:hover {
-		background-color: #d9b00d
-	}
-	
-	.code-button:active {
-		background-color: #c19c0b
-	}
-
-	.code-button:hover span {
-	  padding-right: 25px;
-	}
-
-	.code-button:hover span:after {
-	  opacity: 1;
-	  right: 0;
-	}
-	.image-item {
-		position:relative;
-		opacity: 1.0;
-		cursor: pointer;
-	}
-
-	.image-item:hover {
-		opacity: 0.9;
-	}
-
-	/* The Modal (background) */
-	.image-modal {
-		display: none; /* Hidden by default */
-		position: fixed; /* Stay in place */
-		z-index: 1; /* Sit on top */
-		padding-top: 100px; /* Location of the box */
-		left: 0;
-		top: 0;
-		width: 100%; /* Full width */
-		height: 100%; /* Full height */
-		overflow: hidden; /* Enable scroll if needed */
-		cursor: pointer;
-	}
-
-	.image-modal-background {
-		left: 0;
-		top: 0;
-		width: 100%; /* Full width */
-		height: 100%; /* Full height */
-		background-color: black;
-		opacity: 0.9;
-		position: absolute;
-	}
-
-	/* Modal Content (image) */
-	.image-modal-content {
-		margin: auto;
-		display: block;
-		width: 80%;
-		max-width: 700px;
-		position: relative;
-		top:20%;
-		z-index: 2;
-	}
-
-	/* Caption of Modal Image */
-	#image_modal_caption {
-		margin: auto;
-		display: block;
-		width: 80%;
-		max-width: 700px;
-		text-align: center;
-		color: white;
-		font-size: 1em;
-		font-family: "arial";
-		padding: 10px 0;
-		height: 150px;
-		position: relative;
-		z-index: 2;
-		bottom:-20%;
-	}
-
-	/* Add Animation */
-	.image-modal-content, #image_modal_caption, .image-modal-background {
-		-webkit-animation-name: zoom;
-		-webkit-animation-duration: 0.6s;
-		animation-name: zoom;
-		animation-duration: 0.6s;
-	}
-
-	@-webkit-keyframes zoom {
-		from { opacity: 0.0 }
-		to { opacity: 0.9 }
-	}
-
-	@keyframes zoom {
-		from { opacity: 0.0 }
-		to { opacity: 0.9 }
-	}
-
-	/* 100% Image Width on Smaller Screens */
-	@media only screen and (max-width: 700px){
-		.image-modal-content {
-			width: 100%;
-		}
-	}.header {
+.header {
 		background-color: #f5d34b;
 		padding: 20px;
 		text-align: center;
@@ -336,6 +186,19 @@ body {margin:0;}
 	    box-sizing: border-box;
 	}
 
+	.text {
+		margin: 0px;
+		overflow: wrap;
+	}
+
+	pre {
+		white-space: pre-wrap;       /* css-3 */
+		white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+		white-space: -pre-wrap;      /* Opera 4-6 */
+		white-space: -o-pre-wrap;    /* Opera 7 */
+		word-wrap: break-word;       /* Internet Explorer 5.5+ */
+	}
+
 	.column {
 		padding: 0.1px;
 		float: left;
@@ -425,11 +288,6 @@ body {margin:0;}
 	</head>
 	<body style="background-color:#111111">
 
-	<div id="image_modal" class="image-modal" data-scale="1.6">
-		<img class="image-modal-content" id="image_modal_img">
-		<div id="image_modal_caption"></div>
-		<div class="image-modal-background"></div>
-	</div>
 	<div class="row">
 		<div class="column side">
 		</div>
@@ -446,9 +304,7 @@ body {margin:0;}
 		<div class="column side">
 		</div>
 			<div class="column middle"><div class="navbar" id="topnav">
-<a id="menu_btn_0_0" class="menu_btn active" onclick="onChangePage('0_0')">Introduction</a>
-<a id="menu_btn_1_0" class="menu_btn " onclick="onChangePage('1_0')">Elements</a>
-<a id="menu_btn_2_0" class="menu_btn " onclick="onChangePage('2_0')">Contact</a>
+<a id="menu_btn_0_0" class="menu_btn active" onclick="onChangePage('0_0')">About me</a>
 <a href="javascript:void(0);" class="navbar-icon" onclick="resizeNavbar()">&#9776;</a></div>
 
 			</div>
@@ -458,11 +314,14 @@ body {margin:0;}
 
 	<div class="row">
 		<div class="column side"><table class="portfolio-table"><tr><td colspan="2"><center><img width="100%" style="position:relative; margin: auto; max-width:20em;" src="https://scontent-ams3-1.xx.fbcdn.net/v/t1.0-9/10418941_1557268777829202_1468980730405045962_n.jpg?oh=864cb34a392ac1670cebb566887b89de&oe=5A91F6F1"></img></center></td></tr><tr><td colspan="2"><pre class="portfolio-header">Hilze Vonck</pre></td></tr><tr><td>Age</td><td><span class="calculate-age">Undefined</span> years old</td></tr><tr><td>Education</td><td>NTHV Breda (IGAD)</td></tr><tr><td>Engines</td><td>Unity<br>UE4</td></tr><tr><td>Graphics API's</td><td>OpenGL<br>DirectX 11<br>GNM/GNMX</td></tr><tr><td>Languages</td><td>Proficient in Dutch<br>Proficient in English</td></tr><tr><td>Programming Languages</td><td>C++<br>C#<br>HTML</td></tr><tr><td>Shader Languages</td><td>HLSL<br>GLSL<br>PSSL</td></tr><tr><td>Version Control Systems</td><td>Perforce<br>GIT<br>Turtoise SVN</td></tr></table>		</div>
-			<div class="column middle"><div id="subpage_0_1" style="padding: 1em; width:100%; display:inline-block; background-color:#434343"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Introduction.</pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">Hello.</pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">My name is Hilze Vonck.</pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">I am a third year programming student at NHTV Breda (IGAD).</pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">I enjoy graphics programming and PS4 programming.</pre>
+			<div class="column middle"><div id="subpage_0_1" style="padding: 1em; width:100%; display:inline-block; background-color:#434343"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> About me.</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">My name is Hilze Vonck. I am a third year programming student at NHTV Breda, following the Bachelor course, International Game Architecture and Design (IGAD).</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">I developed an interest in programming during high school. I taught myself how to create websites using HTML, CSS, PHP and JavaScript. But it did not stop there. While I was learning how to create websites, I quickly figured out that this is something that I highly enjoy. So I bought the book <i>"Beginning C++ Through Game Programming"</i> by <i>"Michael Dawson"</i> and I taught myself how to write C++ code.</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">Once I finished that book and all of it's exercises within one week. I spend some time googling how I could continue. Eventually I found out that Simple Fast Multi-media Libary (SFML) was one of the easier places to start. And using SFML I have learned how to create games. I have spend about a year creating games with SFML before I started my study at NHTV.</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">During this education I found out that I highly enjoy graphics programming, so I taught myself how to use OpenGL, DirectX 11 and eventually even GNMX. This year I am expanding my knowledge of graphics and PS4 programming even more, my team and I are creating a custom cross platform engine, but more on that under <i>"Project Sulphur"</i>.</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
 </div><div id="subpage_0_2" style="padding: 1em; width:100%; display:inline-block; background-color:#333333"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Projects.</pre>
 
@@ -479,9 +338,16 @@ body {margin:0;}
 		</div>
 		<div id="collapsable_0" style="padding:1em;">
 
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">This project was called Nebelkampf. And I have done post processing for this project.</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">During my second year at IGAD I have worked on a project called Nebelkampf for 8 weeks.</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">During these 8 weeks I have learned how to implemented various post processing effects using DirectX 11.</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">  </pre>
-<div style="position:relative; left:5.000000%; width:90.000000%""><div class="ba-slider" id="ba_slider_0"><img src="images/all_enabled.png" alt="Without Post-Processing">	<div class="resize">		<img src="images/all_disabled.png" alt="With Post-Processing">	</div>	<span class="handle"></span></div><pre style="left:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">Without Post-Processing</pre><pre style="right:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">With Post-Processing</pre></div>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">The post processing effects that I have implemented/worked on:</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">-Screen Space Ambient Occlusion (SSAO).</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">-Depth of Field (DoF).</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">-Crepuscular Rays (God Rays).</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">-Physically Based Rendering (PBR).</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">  </pre>
+<div style="position:relative; left:5.000000%; width:90.000000%""><div class="ba-slider" id="ba_slider_0"><img src="images/nebelkampf_with_post_processing.png" alt="Without Post-Processing">	<div class="resize">		<img src="images/nebelkampf_without_post_processing.png" alt="With Post-Processing">	</div>	<span class="handle"></span></div><pre style="left:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">Without Post-Processing</pre><pre style="right:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">With Post-Processing</pre></div>
 </div></div>
 
 	<div class="collapsable-container">
@@ -497,16 +363,18 @@ body {margin:0;}
 		</div>
 		<div id="collapsable_1" style="padding:1em;">
 
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">I worked on this project during the second year of college. This was the first time that I did graphics programming.</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">During my second year at IGAD I have worked on this project for 8 weeks. This project was the first time that I have used DirectX 11.</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">I did not only get a solid foundation on how DirectX 11 works, I have also learned how to implement a few post processing effects.</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">  </pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">Effects:</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">About a year later I have revisited this project and I have added a few post processing/lighting effects.</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">Including but not limited to:</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">-Shadow mapping.</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">-Physically Based Rendering (PBR).</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">-Screen Space Ambient Occlusion (SSAO).</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">-Chromatic Aberration.</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">  </pre>
 <div style="position:relative; left:5.000000%; width:90.000000%""><div class="ba-slider" id="ba_slider_1"><img src="images/dev_demo_light_night.png" alt="Day">	<div class="resize">		<img src="images/dev_demo_light_day.png" alt="Night">	</div>	<span class="handle"></span></div><pre style="left:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">Day</pre><pre style="right:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">Night</pre></div>
-<img class="image-item"onclick="modalPopup(this)"alt="The environment during the day."style="left:5.000000%" width="90.000000%" src="images/dev_demo_all_enabled.png"></img>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">  </pre>
 <iframe controls frameborder="0" class="video-player"style="position:relative; background-color:black; height:auto; width:90.000000%; left:5.000000%"src="https://www.youtube.com/embed/vFp3vDLQLJA"></iframe>
 </div></div>
 
@@ -523,87 +391,13 @@ body {margin:0;}
 		</div>
 		<div id="collapsable_2" style="padding:1em;">
 
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">This project is called Project Sulphur. We are creating a custom engine and I am going to do all of the PS4 programming for this project.</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">Project Sulphur is a year long project that I am working on during my third year at IGAD.</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">Project Sulphur is a cross-platform custom engine.</pre>
+<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">I am creating the PS4 side of the project.</pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">  </pre>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">Check out the <a href="https://project-sulphur.com">website</a>.</pre>
 </div></div>
 <pre class="text" style="font-family: 'avenir'; font-size: 1em; color: black">  </pre>
-</div>
-			</div>
-		<div class="column side">
-		</div>
-	</div></div>
-<div class="page" id="page_1">
-
-	<div class="row">
-		<div class="column side"><table class="portfolio-table"><tr><td colspan="2"><center><img width="100%" style="position:relative; margin: auto; max-width:20em;" src=""></img></center></td></tr><tr><td colspan="2"><pre class="portfolio-header"></pre></td></tr><tr><td>Age</td><td><span class="calculate-age">Undefined</span> years old</td></tr><tr><td>Education</td><td>NTHV Breda (IGAD)</td></tr><tr><td>Engines</td><td>Unity<br>UE4</td></tr><tr><td>Graphics API's</td><td>OpenGL<br>DirectX 11<br>GNM/GNMX</td></tr><tr><td>Languages</td><td>Proficient in Dutch<br>Proficient in English</td></tr><tr><td>Programming Languages</td><td>C++<br>C#<br>HTML</td></tr><tr><td>Shader Languages</td><td>HLSL<br>GLSL<br>PSSL</td></tr><tr><td>Version Control Systems</td><td>Perforce<br>GIT<br>Turtoise SVN</td></tr></table>		</div>
-			<div class="column middle"><div id="subpage_1_1" style="padding: 1em; width:100%; display:inline-block; background-color:#434343"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Examples.</pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">This here is an example of the ::code() function:</pre>
-<pre style="position:relative; left:5%; width: 90%" id="code-0"><code style="padding: 0em; height: auto; max-height:10em" class="code-resize-animation c++">#pragma once
-#include < fstream >
-#include "GenerationData.h"
-
-class Menu
-{
-public:
-	virtual std::string style(GenerationData data) { return std::string(); };
-	virtual void generate(GenerationData data, std::ofstream& fout) {};
-	virtual std::string javascript() { return std::string(); };
-};
-
-class DefaultMenu : public Menu
-{
-	virtual std::string style(GenerationData data) override;
-	virtual void generate(GenerationData data, std::ofstream& fout) override;
-};
-
-class ResponsiveDefaultMenu : public Menu
-{
-	virtual std::string style(GenerationData data) override;
-	virtual void generate(GenerationData data, std::ofstream& fout) override;
-	virtual std::string javascript() override;
-};
-
-class DropdownMenu : public Menu
-{
-	virtual std::string style(GenerationData data) override;
-	virtual void generate(GenerationData data, std::ofstream& fout) override;
-};
-
-class ResponsiveDropdownMenu : public Menu
-{
-	virtual std::string style(GenerationData data) override;
-	virtual void generate(GenerationData data, std::ofstream& fout) override;
-	virtual std::string javascript();
-};
-</code><button onclick="codeExpand(0, '10em')" class="code-button"><span id="code-button-0">Expand </span></button></pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">This here is an example of the ::image() function:</pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
-<img class="image-item"onclick="modalPopup(this)"alt="All enabled."style="left:5.000000%" width="45.000000%" src="images/all_enabled.png"></img><img class="image-item"onclick="modalPopup(this)"alt="All disabled."style="left:5.000000%" width="45.000000%" src="images/all_disabled.png"></img>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">This here is an example of the ::comparator() function:</pre>
-<div style="position:relative; left:5.000000%; width:90.000000%""><div class="ba-slider" id="ba_slider_2"><img src="images/all_enabled.png" alt="Without Post-Processing">	<div class="resize">		<img src="images/all_disabled.png" alt="With Post-Processing">	</div>	<span class="handle"></span></div><pre style="left:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">Without Post-Processing</pre><pre style="right:0.0em; background-color:rgba(0,0,0,0.5); color:white; padding:0.25em; font-family:'avenir'; position:absolute; display: block; top:-1.0em; font-size:1em;">With Post-Processing</pre></div>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
-</div><div id="subpage_1_2" style="padding: 1em; width:100%; display:inline-block; background-color:#333333"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 2em; color: #f5d34b"> Videos.</pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">This here is an example of the ::video() function:</pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
-<video controls frameborder="0" class="video-player"style="position:relative; background-color:black; height:auto; width:45.000000%; left:5.000000%"src="videos/yee.mp4"></video><iframe controls frameborder="0" class="video-player"style="position:relative; background-color:black; height:auto; width:45.000000%; left:5.000000%"src="https://www.youtube.com/embed/ZZ5LpwO-An4"></iframe>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
-</div>
-			</div>
-		<div class="column side">
-		</div>
-	</div></div>
-<div class="page" id="page_2">
-
-	<div class="row">
-		<div class="column side"><table class="portfolio-table"><tr><td colspan="2"><center><img width="100%" style="position:relative; margin: auto; max-width:20em;" src=""></img></center></td></tr><tr><td colspan="2"><pre class="portfolio-header"></pre></td></tr><tr><td>Age</td><td><span class="calculate-age">Undefined</span> years old</td></tr><tr><td>Education</td><td>NTHV Breda (IGAD)</td></tr><tr><td>Engines</td><td>Unity<br>UE4</td></tr><tr><td>Graphics API's</td><td>OpenGL<br>DirectX 11<br>GNM/GNMX</td></tr><tr><td>Languages</td><td>Proficient in Dutch<br>Proficient in English</td></tr><tr><td>Programming Languages</td><td>C++<br>C#<br>HTML</td></tr><tr><td>Shader Languages</td><td>HLSL<br>GLSL<br>PSSL</td></tr><tr><td>Version Control Systems</td><td>Perforce<br>GIT<br>Turtoise SVN</td></tr></table>		</div>
-			<div class="column middle"><div id="subpage_2_1" style="padding: 1em; width:100%; display:inline-block; background-color:#434343"><pre style="font-weight: bold; font-family: 'avenir'; font-size: 1.5em; color: #f5d34b">contact</pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">YouTube: <a href="https://youtube.com/c/hilzevonck">click here</a></pre>
-<pre class="text" style="font-family: 'avenir'; font-size: 1em; color: #dedede">  </pre>
 </div>
 			</div>
 		<div class="column side">
@@ -614,8 +408,8 @@ class ResponsiveDropdownMenu : public Menu
 		<div class="column side">
 		</div>
 			<div class="column middle"><div class="footer">
-<p class="footer-title">How to find me</p>
-<p class="footer-subtitle"><a href="http://hilzevonck.me">My Website</a> <a href="https://youtube.com/c/hilzevonck">My YouTube</a></p>
+<p class="footer-title"> </p>
+<p class="footer-subtitle"> </p>
 </div>
 
 			</div>
@@ -699,32 +493,6 @@ class ResponsiveDropdownMenu : public Menu
 
 	window.addEventListener("on_resize", videoResize);
 	videoResize();
-
-	hljs.initHighlightingOnLoad();
-	
-	function codeExpand(idx, height)
-	{
-		var p = document.getElementById("code-" + idx);
-		var x = p.children[0];
-		if (x.style.maxHeight === height) {
-			x.style.maxHeight = "";
-			x.style.maxHeight = x.offsetHeight;
-			document.getElementById("code-button-" + idx).innerText = "Collapse ";
-		} else {
-			x.style.maxHeight = height;
-			document.getElementById("code-button-" + idx).innerText = "Expand ";
-		}
-	}
-	document.getElementById('image_modal').onclick = function() {
-	    document.getElementById('image_modal').style.display = "none";
-	}
-
-	function modalPopup(img) {
-		document.getElementById('image_modal').style.display = "block";
-		console.log(img.src);
-		document.getElementById('image_modal_img').src = img.src;
-		document.getElementById('image_modal_caption').innerHTML = img.alt;
-	}
 
 	function beforeAfterResize() {
 		var idx = 0;
