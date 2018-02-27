@@ -1,0 +1,30 @@
+.resume_button {
+    background-color: #63a4ff;
+    border: 2px solid #63a4ff;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration:
+    none; display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.resume_button:hover {
+    background-color: #434343;
+}
+
+.resume_icon {
+  width: 3.5em;
+  opacity:1.0;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+
+.resume_icon:hover {
+  opacity:0.5;
+}
